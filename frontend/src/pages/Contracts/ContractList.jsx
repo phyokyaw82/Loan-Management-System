@@ -26,7 +26,7 @@ const ContractList = () => {
     const columns = [
         {
             key: "borrowerLoan",
-            label: "Borrower-Loan",
+            label: "Borrower",
             render: (c) => `${c.loan?.borrower?.fullName || "Unknown"}-${c.loan?.amount || 0}`,
         },
         {
