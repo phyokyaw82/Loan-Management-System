@@ -79,7 +79,4 @@ npm run dev
 
 ---
 
-## License
-
-Educational project for assignment purposes.
 
