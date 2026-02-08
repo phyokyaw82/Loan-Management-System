@@ -56,12 +56,12 @@ const TransactionList = () => {
 
     // Actions configuration
     const actions = [
-        {
-            type: "link",
-            label: "Edit",
-            to: (t) => `/transactions/edit/${t._id}`,
-            className: "text-blue-500",
-        },
+        // {
+        //     type: "link",
+        //     label: "Edit",
+        //     to: (t) => `/transactions/edit/${t._id}`,
+        //     className: "text-blue-500",
+        // },
         {
             type: "button",
             label: "Delete",

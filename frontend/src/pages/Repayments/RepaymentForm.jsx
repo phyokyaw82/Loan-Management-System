@@ -9,8 +9,8 @@ const RepaymentForm = () => {
     const [repayment, setRepayment] = useState({
         loan: "",
         paymentDate: "",
-        amountPaid: "",
-        paymentTerm: "",
+        amountPaid: 0,
+        paymentTerm: 0,
         description: ""
     });
     const [loans, setLoans] = useState([]);
@@ -20,31 +20,53 @@ const RepaymentForm = () => {
     const termOptions = [1, 3, 6, 12]; // months
 
     useEffect(() => {
-        getLoans().then(setLoans);
+        const fetchData = async () => {
+            const loanData = await getLoans();
+            setLoans(loanData);
 
-        if (id) {
-            getRepaymentById(id).then((data) => {
+            if (id) {
+                const repaymentData = await getRepaymentById(id);
                 setRepayment({
-                    loan: data.loan?._id || "",
-                    paymentDate: data.paymentDate ? data.paymentDate.slice(0, 10) : "",
-                    amountPaid: data.amountPaid || 0,
-                    paymentTerm: data.paymentTerm || "",
-                    description: data.description || ""
+                    loan: repaymentData.loan?._id || "",
+                    paymentDate: repaymentData.paymentDate ? repaymentData.paymentDate.slice(0, 10) : "",
+                    amountPaid: repaymentData.amountPaid || 0,
+                    paymentTerm: repaymentData.paymentTerm || "",
+                    description: repaymentData.description || ""
                 });
-            });
-        }
+            }
+        };
+
+        fetchData();
     }, [id]);
 
-    const handleChange = (e) => setRepayment({ ...repayment, [e.target.name]: e.target.value });
+    // Selected loan object
+    const selectedLoan = loans.find((l) => l._id === repayment.loan);
+    const remainingBalance = selectedLoan?.balance || 0;
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setRepayment({
+            ...repayment,
+            [name]: name === "amountPaid" || name === "paymentTerm" ? Number(value) : value
+        });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const amountPaid = Number(repayment.amountPaid);
+
+        // Validate amountPaid does not exceed remaining balance
+        if (amountPaid > remainingBalance) {
+            alert(`Amount paid cannot exceed remaining balance: ${remainingBalance}`);
+            return;
+        }
+
         const payload = {
             ...repayment,
-            amountPaid: Number(repayment.amountPaid),
+            amountPaid: amountPaid || 0,
             paymentTerm: Number(repayment.paymentTerm),
-            paymentDate: repayment.paymentDate ? new Date(repayment.paymentDate) : null
+            paymentDate: repayment.paymentDate ? new Date(repayment.paymentDate) : new Date()
         };
 
         try {
@@ -63,6 +85,7 @@ const RepaymentForm = () => {
             <div className="max-w-md mx-auto">
                 <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow space-y-4">
 
+                    {/* Loan Selection */}
                     <FormRow label="Loan">
                         <select
                             name="loan"
@@ -78,8 +101,15 @@ const RepaymentForm = () => {
                                 </option>
                             ))}
                         </select>
+                        {/* Display remaining balance like TransactionForm */}
+                        {selectedLoan && (
+                            <p className="text-sm text-gray-600 mt-1">
+                                Remaining Balance: {remainingBalance}
+                            </p>
+                        )}
                     </FormRow>
 
+                    {/* Payment Date */}
                     <FormRow label="Payment Date">
                         <input
                             type="date"
@@ -91,6 +121,7 @@ const RepaymentForm = () => {
                         />
                     </FormRow>
 
+                    {/* Amount Paid */}
                     <FormRow label="Amount Paid">
                         <input
                             type="number"
@@ -99,16 +130,18 @@ const RepaymentForm = () => {
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
                             required
+                            min="0"
+                            max={remainingBalance} // optional HTML max
                         />
                     </FormRow>
 
+                    {/* Payment Term */}
                     <FormRow label="Payment Term (months)">
                         <select
                             name="paymentTerm"
                             value={repayment.paymentTerm}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
-                            required
                         >
                             <option value="">Select Term</option>
                             {termOptions.map((t) => (
@@ -117,6 +150,7 @@ const RepaymentForm = () => {
                         </select>
                     </FormRow>
 
+                    {/* Description */}
                     <FormRow label="Description">
                         <input
                             type="text"
@@ -127,6 +161,7 @@ const RepaymentForm = () => {
                         />
                     </FormRow>
 
+                    {/* Submit Button */}
                     <div className="flex justify-end">
                         <button
                             type="submit"
@@ -135,6 +170,7 @@ const RepaymentForm = () => {
                             {id ? "Update" : "Create"}
                         </button>
                     </div>
+
                 </form>
             </div>
         </>

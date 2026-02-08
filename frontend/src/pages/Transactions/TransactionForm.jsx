@@ -4,7 +4,7 @@ import { createTransaction, getTransactionById, updateTransaction } from "../../
 import { getLoans } from "../../api/loanApi";
 import LoanHistory from "./LoanHistory";
 import PageToolbar from "../../components/PageToolbar";
-import FormRow from "../../components/FormRow"; // <-- import shared FormRow
+import FormRow from "../../components/FormRow";
 
 const TransactionForm = () => {
     const [transaction, setTransaction] = useState({
@@ -22,29 +22,51 @@ const TransactionForm = () => {
     const typeOptions = ["Repayment", "Late Fee", "Penalty"];
 
     useEffect(() => {
-        getLoans().then(setLoans);
+        const fetchData = async () => {
+            const loanData = await getLoans();
+            setLoans(loanData);
 
-        if (id) {
-            getTransactionById(id).then((data) => {
+            if (id) {
+                const txData = await getTransactionById(id);
                 setTransaction({
-                    loan: data.loan?._id || "",
-                    type: data.type || "",
-                    amount: data.amount || "",
-                    description: data.description || "",
-                    transactionDate: data.transactionDate ? data.transactionDate.slice(0, 10) : ""
+                    loan: txData.loan?._id || "",
+                    type: txData.type || "",
+                    amount: txData.amount || 0,
+                    description: txData.description || "",
+                    transactionDate: txData.transactionDate ? txData.transactionDate.slice(0, 10) : ""
                 });
-            });
-        }
+            }
+        };
+
+        fetchData();
     }, [id]);
 
-    const handleChange = (e) => setTransaction({ ...transaction, [e.target.name]: e.target.value });
+    // Selected loan object
+    const selectedLoan = loans.find((l) => l._id === transaction.loan);
+    const remainingBalance = selectedLoan?.balance || 0;
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setTransaction({
+            ...transaction,
+            [name]: name === "amount" ? Number(value) : value
+        });
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const amount = Number(transaction.amount);
+
+        // Check balance only if type is "Repayment"
+        if (transaction.type === "Repayment" && amount > remainingBalance) {
+            alert(`Amount cannot exceed remaining loan balance: ${remainingBalance}`);
+            return;
+        }
+
         const payload = {
             ...transaction,
-            amount: Number(transaction.amount),
+            amount,
             transactionDate: transaction.transactionDate ? new Date(transaction.transactionDate) : new Date()
         };
 
@@ -63,6 +85,8 @@ const TransactionForm = () => {
             <PageToolbar title={id ? "Edit Transaction" : "Add Transaction"} />
             <div className="max-w-md mx-auto">
                 <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow space-y-4">
+
+                    {/* Loan selection */}
                     <FormRow label="Loan">
                         <select
                             name="loan"
@@ -78,8 +102,14 @@ const TransactionForm = () => {
                                 </option>
                             ))}
                         </select>
+                        {selectedLoan && transaction.type === "Repayment" && (
+                            <p className="text-sm text-gray-600 mt-1">
+                                Remaining Balance: {remainingBalance}
+                            </p>
+                        )}
                     </FormRow>
 
+                    {/* Type */}
                     <FormRow label="Type">
                         <select
                             name="type"
@@ -95,6 +125,7 @@ const TransactionForm = () => {
                         </select>
                     </FormRow>
 
+                    {/* Amount */}
                     <FormRow label="Amount">
                         <input
                             type="number"
@@ -103,9 +134,12 @@ const TransactionForm = () => {
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
                             required
+                            min="0"
+                            max={transaction.type === "Repayment" ? remainingBalance : undefined} // optional
                         />
                     </FormRow>
 
+                    {/* Description */}
                     <FormRow label="Description">
                         <input
                             type="text"
@@ -116,6 +150,7 @@ const TransactionForm = () => {
                         />
                     </FormRow>
 
+                    {/* Transaction Date */}
                     <FormRow label="Transaction Date">
                         <input
                             type="date"
@@ -127,6 +162,7 @@ const TransactionForm = () => {
                         />
                     </FormRow>
 
+                    {/* Submit */}
                     <div className="flex justify-end">
                         <button
                             type="submit"
@@ -135,6 +171,7 @@ const TransactionForm = () => {
                             {id ? "Update" : "Create"}
                         </button>
                     </div>
+
                 </form>
             </div>
 

@@ -3,7 +3,6 @@ import { getRepayments, deleteRepayment } from "../../api/repaymentApi";
 import { getLoans } from "../../api/loanApi";
 import PageToolbar from "../../components/PageToolbar";
 import DataTable from "../../components/DataTable";
-import { Link } from "react-router-dom";
 
 const RepaymentList = () => {
     const [repayments, setRepayments] = useState([]);
@@ -33,22 +32,6 @@ const RepaymentList = () => {
         fetchLoans();
     }, []);
 
-    const computeRemainingBalance = (repayment) => {
-        const loan = loans[repayment.loan?._id || repayment.loan];
-        if (!loan) return "-";
-
-        const allRepaymentsForLoan = repayments.filter(
-            (r) => r.loan?._id === loan._id || r.loan === loan._id
-        );
-
-        const totalPaid = allRepaymentsForLoan.reduce(
-            (sum, r) => sum + Number(r.amountPaid || 0),
-            0
-        );
-
-        return loan.amount - totalPaid;
-    };
-
     const columns = [
         {
             key: "borrower",
@@ -67,17 +50,17 @@ const RepaymentList = () => {
         },
         { key: "amountPaid", label: "Amount Paid" },
         { key: "paymentTerm", label: "Payment Term", render: (r) => `${r.paymentTerm} months` },
-        { key: "remainingBalance", label: "Remaining Balance", render: computeRemainingBalance },
+        { key: "remainingBalance", label: "Remaining Balance", render: (r) => `${r.remainingBalance}` },
         { key: "description", label: "Description", render: (r) => r.description || "-" },
     ];
 
     const actions = [
-        {
-            type: "link",
-            label: "Edit",
-            to: (r) => `/repayments/edit/${r._id}`,
-            className: "text-blue-500",
-        },
+        // {
+        //     type: "link",
+        //     label: "Edit",
+        //     to: (r) => `/repayments/edit/${r._id}`,
+        //     className: "text-blue-500",
+        // },
         {
             type: "button",
             label: "Delete",
