@@ -3,20 +3,36 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 5,
             "patches": [
                 {
-                    "date": 1770558289832,
+                    "date": 1770559991757,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
                 },
                 {
-                    "date": 1770558964471,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import React from \"react\";\n+import ReactDOM from \"react-dom/client\";\n+import App from \"./App\";\n+import \"./index.css\";\n+\n+ReactDOM.createRoot(document.getElementById(\"root\")).render(\n+  <React.StrictMode>\n+    <App />\n+  </React.StrictMode>\n+);\n"
+                    "date": 1770560462980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\n import ReactDOM from \"react-dom/client\";\n import App from \"./App\";\n-import \"./index.css\"; // <- THIS is required\n+import \"./index.css\"; // <-- make sure this is here!\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <App />\n"
+                },
+                {
+                    "date": 1770560827276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\n import ReactDOM from \"react-dom/client\";\n-import App from \"./App\";\n-import \"./index.css\"; // <-- make sure this is here!\n+import App from \"./App.jsx\";\n+import \"./index.css\";\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <App />\n"
+                },
+                {
+                    "date": 1770561122892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\n import ReactDOM from \"react-dom/client\";\n import App from \"./App.jsx\";\n-import \"./index.css\";\n+import \"./index.css\"; // <-- very important\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <App />\n"
+                },
+                {
+                    "date": 1770562317155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\n import ReactDOM from \"react-dom/client\";\n-import App from \"./App.jsx\";\n-import \"./index.css\"; // <-- very important\n+import App from \"./App\";   // make sure this matches your file name\n+import \"./index.css\";\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n     <App />\n"
+                },
+                {
+                    "date": 1770562528252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React from \"react\";\n import ReactDOM from \"react-dom/client\";\n-import App from \"./App\";   // make sure this matches your file name\n+import App from \"./App.jsx\";   // make sure this matches your file name\n import \"./index.css\";\n \n ReactDOM.createRoot(document.getElementById(\"root\")).render(\n   <React.StrictMode>\n"
                 }
             ],
-            "date": 1770558289832,
+            "date": 1770559991757,
             "name": "Commit-0",
-            "content": "import React from \"react\";\nimport ReactDOM from \"react-dom/client\";\nimport App from \"./App\";\nimport \"./index.css\";  // <-- important\n\nReactDOM.createRoot(document.getElementById(\"root\")).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);\n"
+            "content": "import React from \"react\";\nimport ReactDOM from \"react-dom/client\";\nimport App from \"./App\";\nimport \"./index.css\"; // <- THIS is required\n\nReactDOM.createRoot(document.getElementById(\"root\")).render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);\n"
         }
     ]
 }

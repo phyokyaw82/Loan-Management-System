@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/FileUpload.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250203,
+            "name": "Commit-0",
+            "content": "import { useState } from \"react\";\r\n\r\nconst FileUpload = ({ onUpload }) => {\r\n    const [file, setFile] = useState(null);\r\n    const handleChange = (e) => setFile(e.target.files[0]);\r\n    const handleUpload = () => { const formData = new FormData(); formData.append(\"file\", file); onUpload(formData); };\r\n\r\n    return (\r\n        <div className=\"flex items-center space-x-2\">\r\n            <input type=\"file\" onChange={handleChange} />\r\n            <button onClick={handleUpload} className=\"bg-green-500 text-white px-3 py-1 rounded\">Upload</button>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default FileUpload;\r\n"
+        }
+    ]
+}

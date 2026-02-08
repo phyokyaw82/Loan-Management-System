@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Transactions/TransactionList.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250206,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from \"react\";\r\nimport { getTransactions } from \"../../api/transactionApi\";\r\n\r\nconst TransactionList = () => {\r\n    const [transactions, setTransactions] = useState([]);\r\n\r\n    useEffect(() => { getTransactions().then(setTransactions); }, []);\r\n\r\n    return (\r\n        <div>\r\n            <h1 className=\"text-2xl font-bold mb-4\">Transactions</h1>\r\n            <table className=\"min-w-full bg-white border\">\r\n                <thead>\r\n                    <tr>\r\n                        <th className=\"py-2 px-4 border\">Transaction ID</th>\r\n                        <th className=\"py-2 px-4 border\">Loan</th>\r\n                        <th className=\"py-2 px-4 border\">Date</th>\r\n                        <th className=\"py-2 px-4 border\">Type</th>\r\n                        <th className=\"py-2 px-4 border\">Amount</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    {transactions.map(t => (\r\n                        <tr key={t._id}>\r\n                            <td className=\"py-2 px-4 border\">{t._id}</td>\r\n                            <td className=\"py-2 px-4 border\">{t.loan?.amount || t.loan}</td>\r\n                            <td className=\"py-2 px-4 border\">{new Date(t.date).toLocaleDateString()}</td>\r\n                            <td className=\"py-2 px-4 border\">{t.type}</td>\r\n                            <td className=\"py-2 px-4 border\">{t.amount}</td>\r\n                        </tr>\r\n                    ))}\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default TransactionList;\r\n"
+        }
+    ]
+}

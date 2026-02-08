@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Contracts/ContractList.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250668,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250668,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from \"react\";\r\nimport { getContracts } from \"../../api/contractApi\";\r\n\r\nconst ContractList = () => {\r\n    const [contracts, setContracts] = useState([]);\r\n\r\n    useEffect(() => { getContracts().then(setContracts); }, []);\r\n\r\n    return (\r\n        <div>\r\n            <h1 className=\"text-2xl font-bold mb-4\">Contracts</h1>\r\n            <table className=\"min-w-full bg-white border\">\r\n                <thead>\r\n                    <tr>\r\n                        <th className=\"py-2 px-4 border\">Contract ID</th>\r\n                        <th className=\"py-2 px-4 border\">Loan</th>\r\n                        <th className=\"py-2 px-4 border\">Signing Date</th>\r\n                        <th className=\"py-2 px-4 border\">Document</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    {contracts.map(c => (\r\n                        <tr key={c._id}>\r\n                            <td className=\"py-2 px-4 border\">{c._id}</td>\r\n                            <td className=\"py-2 px-4 border\">{c.loan?.amount || c.loan}</td>\r\n                            <td className=\"py-2 px-4 border\">{new Date(c.signingDate).toLocaleDateString()}</td>\r\n                            <td className=\"py-2 px-4 border\">\r\n                                <a href={`http://localhost:5000/${c.document}`} target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-blue-500\">View</a>\r\n                            </td>\r\n                        </tr>\r\n                    ))}\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default ContractList;\r\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/LoanHistory.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770567127621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770567127620,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from \"react\";\r\nimport { getRepaymentsByLoan } from \"../../api/repaymentApi\";\r\nimport { getTransactionsByLoan } from \"../../api/transactionApi\";\r\n\r\nconst LoanHistory = ({ loanId }) => {\r\n    const [history, setHistory] = useState([]);\r\n\r\n    useEffect(() => {\r\n        if (!loanId) return;\r\n\r\n        const fetchHistory = async () => {\r\n            const repayments = await getRepaymentsByLoan(loanId);\r\n            const transactions = await getTransactionsByLoan(loanId);\r\n\r\n            // Tag each record for type\r\n            const combined = [\r\n                ...repayments.map((r) => ({\r\n                    ...r,\r\n                    recordType: \"Repayment\",\r\n                    date: r.paymentDate,\r\n                })),\r\n                ...transactions.map((t) => ({\r\n                    ...t,\r\n                    recordType: t.type,\r\n                    date: t.transactionDate,\r\n                })),\r\n            ];\r\n\r\n            // Sort by date descending\r\n            combined.sort((a, b) => new Date(b.date) - new Date(a.date));\r\n\r\n            setHistory(combined);\r\n        };\r\n\r\n        fetchHistory();\r\n    }, [loanId]);\r\n\r\n    if (!loanId) return null;\r\n\r\n    return (\r\n        <div className=\"mt-6\">\r\n            <h2 className=\"text-xl font-semibold mb-2\">Loan History</h2>\r\n            <table className=\"min-w-full bg-white border\">\r\n                <thead>\r\n                    <tr>\r\n                        <th className=\"py-2 px-4 border\">Date</th>\r\n                        <th className=\"py-2 px-4 border\">Type</th>\r\n                        <th className=\"py-2 px-4 border\">Amount</th>\r\n                        <th className=\"py-2 px-4 border\">Description</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    {history.length === 0 ? (\r\n                        <tr>\r\n                            <td colSpan=\"4\" className=\"py-2 px-4 text-center text-gray-500\">\r\n                                No history found.\r\n                            </td>\r\n                        </tr>\r\n                    ) : (\r\n                        history.map((h) => (\r\n                            <tr key={h._id}>\r\n                                <td className=\"py-2 px-4 border\">{new Date(h.date).toLocaleDateString()}</td>\r\n                                <td className=\"py-2 px-4 border\">{h.recordType}</td>\r\n                                <td className=\"py-2 px-4 border\">{h.amountPaid || h.amount}</td>\r\n                                <td className=\"py-2 px-4 border\">{h.description || \"-\"}</td>\r\n                            </tr>\r\n                        ))\r\n                    )}\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default LoanHistory;\r\n"
+        }
+    ]
+}

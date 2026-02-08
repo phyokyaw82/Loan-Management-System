@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/api/transactionApi.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562874358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562874358,
+            "name": "Commit-0",
+            "content": "import axios from \"axios\";\r\nconst API_URL = \"http://localhost:5000/api/transactions\";\r\n\r\nexport const getTransactions = async () => (await axios.get(API_URL)).data;\r\nexport const getTransactionById = async (id) => (await axios.get(`${API_URL}/${id}`)).data;\r\nexport const getTransactionsByLoan = async (loanId) => (await axios.get(`${API_URL}/loan/${loanId}`)).data;\r\nexport const createTransaction = async (transaction) => (await axios.post(API_URL, transaction)).data;\r\nexport const updateTransaction = async (id, transaction) => (await axios.put(`${API_URL}/${id}`, transaction)).data;\r\nexport const deleteTransaction = async (id) => (await axios.delete(`${API_URL}/${id}`)).data;\r\n"
+        }
+    ]
+}

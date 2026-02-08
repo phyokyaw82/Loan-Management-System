@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/Sidebar.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770577804781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770577804781,
+            "name": "Commit-0",
+            "content": "import { NavLink } from \"react-router-dom\";\r\n\r\nconst Sidebar = () => {\r\n    const linkClasses = ({ isActive }) =>\r\n        `p-2 rounded hover:bg-gray-700 ${isActive ? \"bg-gray-700 font-semibold\" : \"\"}`;\r\n\r\n    return (\r\n        <aside className=\"w-64 h-screen bg-gray-800 text-white flex flex-col p-4\">\r\n            <h1 className=\"text-xl font-bold mb-6\">Loan System</h1>\r\n            <nav className=\"flex flex-col space-y-3\">\r\n                <NavLink to=\"/\" className={linkClasses} end>\r\n                    Home\r\n                </NavLink>\r\n                <NavLink to=\"/borrowers\" className={linkClasses}>\r\n                    Borrowers\r\n                </NavLink>\r\n                <NavLink to=\"/loans\" className={linkClasses}>\r\n                    Loans\r\n                </NavLink>\r\n                <NavLink to=\"/repayments\" className={linkClasses}>\r\n                    Repayments\r\n                </NavLink>\r\n                <NavLink to=\"/transactions\" className={linkClasses}>\r\n                    Transactions\r\n                </NavLink>\r\n                <NavLink to=\"/contracts\" className={linkClasses}>\r\n                    Contracts\r\n                </NavLink>\r\n            </nav>\r\n        </aside>\r\n    );\r\n};\r\n\r\nexport default Sidebar;\r\n"
+        }
+    ]
+}

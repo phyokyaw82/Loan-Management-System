@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/components/Navbar.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250214,
+            "name": "Commit-0",
+            "content": "import { Link } from \"react-router-dom\";\r\n\r\nconst Navbar = () => (\r\n    <nav className=\"bg-blue-600 text-white p-4 flex space-x-4\">\r\n        <Link to=\"/\">Home</Link>\r\n        <Link to=\"/borrowers\">Borrowers</Link>\r\n        <Link to=\"/loans\">Loans</Link>\r\n        <Link to=\"/repayments\">Repayments</Link>\r\n        <Link to=\"/transactions\">Transactions</Link>\r\n        <Link to=\"/contracts\">Contracts</Link>\r\n    </nav>\r\n);\r\n\r\nexport default Navbar;\r\n"
+        }
+    ]
+}

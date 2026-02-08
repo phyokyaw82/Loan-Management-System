@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Contracts/ContractForm.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250200,
+            "name": "Commit-0",
+            "content": "import { useState, useEffect } from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\nimport { createContract } from \"../../api/contractApi\";\r\nimport { getLoans } from \"../../api/loanApi\";\r\nimport FileUpload from \"../../components/FileUpload\";\r\n\r\nconst ContractForm = () => {\r\n    const [loanId, setLoanId] = useState(\"\");\r\n    const [signingDate, setSigningDate] = useState(\"\");\r\n    const [loans, setLoans] = useState([]);\r\n    const navigate = useNavigate();\r\n\r\n    useEffect(() => { getLoans().then(setLoans); }, []);\r\n\r\n    const handleUpload = async (formData) => {\r\n        formData.append(\"loan\", loanId);\r\n        formData.append(\"signingDate\", signingDate);\r\n        await createContract(formData);\r\n        navigate(\"/contracts\");\r\n    };\r\n\r\n    return (\r\n        <div className=\"max-w-md mx-auto\">\r\n            <h1 className=\"text-2xl font-bold mb-4\">Add Contract</h1>\r\n            <div className=\"bg-white p-6 rounded shadow space-y-4\">\r\n                <label>Loan</label>\r\n                <select value={loanId} onChange={e => setLoanId(e.target.value)} className=\"w-full border p-2\">\r\n                    <option value=\"\">Select Loan</option>\r\n                    {loans.map(l => <option key={l._id} value={l._id}>{l.borrower?.fullName} - {l.amount}</option>)}\r\n                </select>\r\n                <label>Signing Date</label>\r\n                <input type=\"date\" value={signingDate} onChange={e => setSigningDate(e.target.value)} className=\"w-full border p-2\" />\r\n                <FileUpload onUpload={handleUpload} />\r\n            </div>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default ContractForm;\r\n"
+        }
+    ]
+}

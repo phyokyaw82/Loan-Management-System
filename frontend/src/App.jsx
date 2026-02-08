@@ -1,18 +1,45 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Borrowers from "./pages/Borrowers";
-import Loans from "./pages/Loans";
-import Repayments from "./pages/Repayments";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import BorrowerList from "./pages/Borrowers/BorrowerList";
+import BorrowerForm from "./pages/Borrowers/BorrowerForm";
+import LoanList from "./pages/Loans/LoanList";
+import LoanForm from "./pages/Loans/LoanForm";
+import RepaymentList from "./pages/Repayments/RepaymentList";
+import RepaymentForm from "./pages/Repayments/RepaymentForm";
+import TransactionList from "./pages/Transactions/TransactionList";
+import TransactionForm from "./pages/Transactions/TransactionForm";
+import ContractList from "./pages/Contracts/ContractList";
+import ContractForm from "./pages/Contracts/ContractForm";
 
 function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<div className="p-6">Home Page</div>} />
-        <Route path="/borrowers" element={<Borrowers />} />
-        <Route path="/loans" element={<Loans />} />
-        <Route path="/repayments" element={<Repayments />} />
+        {/* Layout wrapper */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+
+          <Route path="/borrowers" element={<BorrowerList />} />
+          <Route path="/borrowers/new" element={<BorrowerForm />} />
+          <Route path="/borrowers/edit/:id" element={<BorrowerForm />} />
+
+          <Route path="/loans" element={<LoanList />} />
+          <Route path="/loans/new" element={<LoanForm />} />
+          <Route path="/loans/edit/:id" element={<LoanForm />} />
+
+          <Route path="/repayments" element={<RepaymentList />} />
+          <Route path="/repayments/new" element={<RepaymentForm />} />
+          <Route path="/repayments/edit/:id" element={<RepaymentForm />} />
+
+          <Route path="/transactions" element={<TransactionList />} />
+          <Route path="/transactions/new" element={<TransactionForm />} />
+          <Route path="/transactions/edit/:id" element={<TransactionForm />} />
+
+          <Route path="/contracts" element={<ContractList />} />
+          <Route path="/contracts/new" element={<ContractForm />} />
+          <Route path="/contracts/edit/:id" element={<ContractForm />} />
+        </Route>
       </Routes>
     </Router>
   );

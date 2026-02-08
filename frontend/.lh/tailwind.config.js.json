@@ -3,14 +3,30 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 4,
             "patches": [
                 {
-                    "date": 1770558289575,
+                    "date": 1770559990964,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770560507657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n /** @type {import('tailwindcss').Config} */\r\n export default {\r\n-    content: [\"./index.html\", \"./src/**/*.{js,jsx}\"],\r\n+    content: [\r\n+        \"./index.html\",\r\n+        \"./src/**/*.{js,jsx,ts,tsx}\",\r\n+    ],\r\n     theme: {\r\n         extend: {},\r\n     },\r\n     plugins: [],\r\n"
+                },
+                {
+                    "date": 1770560655459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n /** @type {import('tailwindcss').Config} */\r\n export default {\r\n     content: [\r\n         \"./index.html\",\r\n-        \"./src/**/*.{js,jsx,ts,tsx}\",\r\n+        \"./src/**/*.{js,jsx,ts,tsx}\", // include all your React components\r\n     ],\r\n     theme: {\r\n         extend: {},\r\n     },\r\n"
+                },
+                {
+                    "date": 1770560795767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n /** @type {import('tailwindcss').Config} */\r\n export default {\r\n     content: [\r\n         \"./index.html\",\r\n-        \"./src/**/*.{js,jsx,ts,tsx}\", // include all your React components\r\n+        \"./src/**/*.{js,jsx}\"\r\n     ],\r\n     theme: {\r\n         extend: {},\r\n     },\r\n"
+                },
+                {
+                    "date": 1770563139571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-/** @type {import('tailwindcss').Config} */\r\n export default {\r\n     content: [\r\n         \"./index.html\",\r\n-        \"./src/**/*.{js,jsx}\"\r\n+        \"./src/**/*.{js,jsx,ts,tsx}\",\r\n     ],\r\n+    darkMode: \"class\", // <-- enable dark mode with a class\r\n     theme: {\r\n         extend: {},\r\n     },\r\n     plugins: [],\r\n"
                 }
             ],
-            "date": 1770558289575,
+            "date": 1770559990964,
             "name": "Commit-0",
             "content": "/** @type {import('tailwindcss').Config} */\r\nexport default {\r\n    content: [\"./index.html\", \"./src/**/*.{js,jsx}\"],\r\n    theme: {\r\n        extend: {},\r\n    },\r\n    plugins: [],\r\n};\r\n"
         }

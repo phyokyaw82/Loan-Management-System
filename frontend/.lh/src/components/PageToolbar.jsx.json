@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/components/PageToolbar.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1770575733190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770575764155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \r\n             {buttonLabel && buttonLink && (\r\n                 <Link\r\n                     to={buttonLink}\r\n-                    className=\"bg-blue-600 hover:bg-gray-700 text-white px-4 py-2 rounded\"\r\n+                    className=\"bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded\"\r\n                 >\r\n                     {buttonLabel}\r\n                 </Link>\r\n             )}\r\n"
+                },
+                {
+                    "date": 1770577918221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \r\n             {buttonLabel && buttonLink && (\r\n                 <Link\r\n                     to={buttonLink}\r\n-                    className=\"bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded\"\r\n+                    className=\"bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600\"\r\n                 >\r\n                     {buttonLabel}\r\n                 </Link>\r\n             )}\r\n"
+                },
+                {
+                    "date": 1770577998487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { Link } from \"react-router-dom\";\r\n \r\n const PageToolbar = ({ title, buttonLabel, buttonLink }) => {\r\n     return (\r\n-        <div className=\"flex items-center justify-between mb-6\">\r\n+        <div className=\"flex bg-gray-500 items-center justify-between mb-6\">\r\n             <h1 className=\"text-2xl font-bold text-gray-800\">\r\n                 {title}\r\n             </h1>\r\n \r\n"
+                },
+                {
+                    "date": 1770578011750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { Link } from \"react-router-dom\";\r\n \r\n const PageToolbar = ({ title, buttonLabel, buttonLink }) => {\r\n     return (\r\n-        <div className=\"flex bg-gray-500 items-center justify-between mb-6\">\r\n+        <div className=\"flex bg-gray-500 p-4 items-center justify-between\">\r\n             <h1 className=\"text-2xl font-bold text-gray-800\">\r\n                 {title}\r\n             </h1>\r\n \r\n"
+                },
+                {
+                    "date": 1770578027798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { Link } from \"react-router-dom\";\r\n \r\n const PageToolbar = ({ title, buttonLabel, buttonLink }) => {\r\n     return (\r\n-        <div className=\"flex bg-gray-500 p-4 items-center justify-between\">\r\n+        <div className=\"flex items-center justify-between mb-6\">\r\n             <h1 className=\"text-2xl font-bold text-gray-800\">\r\n                 {title}\r\n             </h1>\r\n \r\n"
+                }
+            ],
+            "date": 1770575733190,
+            "name": "Commit-0",
+            "content": "import { Link } from \"react-router-dom\";\r\n\r\nconst PageToolbar = ({ title, buttonLabel, buttonLink }) => {\r\n    return (\r\n        <div className=\"flex items-center justify-between mb-6\">\r\n            <h1 className=\"text-2xl font-bold text-gray-800\">\r\n                {title}\r\n            </h1>\r\n\r\n            {buttonLabel && buttonLink && (\r\n                <Link\r\n                    to={buttonLink}\r\n                    className=\"bg-blue-600 hover:bg-gray-700 text-white px-4 py-2 rounded\"\r\n                >\r\n                    {buttonLabel}\r\n                </Link>\r\n            )}\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default PageToolbar;\r\n"
+        }
+    ]
+}

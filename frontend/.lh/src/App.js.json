@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/App.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250205,
+            "name": "Commit-0",
+            "content": "import { BrowserRouter as Router, Routes, Route } from \"react-router-dom\";\nimport Layout from \"./components/Layout\";\nimport Home from \"./pages/Home\";\nimport BorrowerList from \"./pages/Borrowers/BorrowerList\";\nimport BorrowerForm from \"./pages/Borrowers/BorrowerForm\";\nimport LoanList from \"./pages/Loans/LoanList\";\nimport LoanForm from \"./pages/Loans/LoanForm\";\nimport RepaymentList from \"./pages/Repayments/RepaymentList\";\nimport RepaymentForm from \"./pages/Repayments/RepaymentForm\";\nimport TransactionList from \"./pages/Transactions/TransactionList\";\nimport ContractList from \"./pages/Contracts/ContractList\";\nimport ContractForm from \"./pages/Contracts/ContractForm\";\n\nfunction App() {\n  return (\n    <Router>\n      <Layout>\n        <Routes>\n          <Route path=\"/\" element={<Home />} />\n          <Route path=\"/borrowers\" element={<BorrowerList />} />\n          <Route path=\"/borrowers/new\" element={<BorrowerForm />} />\n          <Route path=\"/borrowers/edit/:id\" element={<BorrowerForm />} />\n\n          <Route path=\"/loans\" element={<LoanList />} />\n          <Route path=\"/loans/new\" element={<LoanForm />} />\n          <Route path=\"/loans/edit/:id\" element={<LoanForm />} />\n\n          <Route path=\"/repayments\" element={<RepaymentList />} />\n          <Route path=\"/repayments/new\" element={<RepaymentForm />} />\n\n          <Route path=\"/transactions\" element={<TransactionList />} />\n\n          <Route path=\"/contracts\" element={<ContractList />} />\n          <Route path=\"/contracts/new\" element={<ContractForm />} />\n        </Routes>\n      </Layout>\n    </Router>\n  );\n}\n\nexport default App;\n"
+        }
+    ]
+}

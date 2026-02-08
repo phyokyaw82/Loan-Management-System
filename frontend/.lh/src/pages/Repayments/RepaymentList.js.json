@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Repayments/RepaymentList.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250201,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250201,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from \"react\";\r\nimport { getRepayments, deleteRepayment } from \"../../api/repaymentApi\";\r\nimport { Link } from \"react-router-dom\";\r\n\r\nconst RepaymentList = () => {\r\n    const [repayments, setRepayments] = useState([]);\r\n\r\n    const fetchRepayments = async () => setRepayments(await getRepayments());\r\n    const handleDelete = async (id) => { await deleteRepayment(id); fetchRepayments(); };\r\n\r\n    useEffect(() => { fetchRepayments(); }, []);\r\n\r\n    return (\r\n        <div>\r\n            <h1 className=\"text-2xl font-bold mb-4\">Repayments</h1>\r\n            <Link to=\"/repayments/new\" className=\"bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block\">Add Repayment</Link>\r\n            <table className=\"min-w-full bg-white border\">\r\n                <thead>\r\n                    <tr>\r\n                        <th className=\"py-2 px-4 border\">Payment ID</th>\r\n                        <th className=\"py-2 px-4 border\">Loan</th>\r\n                        <th className=\"py-2 px-4 border\">Payment Date</th>\r\n                        <th className=\"py-2 px-4 border\">Amount Paid</th>\r\n                        <th className=\"py-2 px-4 border\">Remaining Balance</th>\r\n                        <th className=\"py-2 px-4 border\">Actions</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    {repayments.map(r => (\r\n                        <tr key={r._id}>\r\n                            <td className=\"py-2 px-4 border\">{r._id}</td>\r\n                            <td className=\"py-2 px-4 border\">{r.loan?.amount || r.loan}</td>\r\n                            <td className=\"py-2 px-4 border\">{new Date(r.paymentDate).toLocaleDateString()}</td>\r\n                            <td className=\"py-2 px-4 border\">{r.amountPaid}</td>\r\n                            <td className=\"py-2 px-4 border\">{r.remainingBalance}</td>\r\n                            <td className=\"py-2 px-4 border\">\r\n                                <button onClick={() => handleDelete(r._id)} className=\"text-red-500\">Delete</button>\r\n                            </td>\r\n                        </tr>\r\n                    ))}\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default RepaymentList;\r\n"
+        }
+    ]
+}

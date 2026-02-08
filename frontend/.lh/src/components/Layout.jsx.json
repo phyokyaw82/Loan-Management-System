@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/components/Layout.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1770575326209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770575368294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,16 @@\n import Sidebar from \"./Sidebar\";\r\n+import { Outlet } from \"react-router-dom\";\r\n \r\n-const Layout = ({ children }) => (\r\n-    <div>\r\n-        <Sidebar />\r\n-        <main className=\"p-6 bg-gray-100 min-h-screen\">{children}</main>\r\n-    </div>\r\n-);\r\n+const Layout = () => {\r\n+    return (\r\n+        <div className=\"flex\">\r\n+            <Sidebar />\r\n \r\n+            <main className=\"flex-1 p-6 bg-gray-100 min-h-screen\">\r\n+                <Outlet />\r\n+            </main>\r\n+        </div>\r\n+    );\r\n+};\r\n+\r\n export default Layout;\r\n"
+                },
+                {
+                    "date": 1770577550464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,16 @@\n import { Outlet } from \"react-router-dom\";\r\n \r\n const Layout = () => {\r\n     return (\r\n-        <div className=\"flex\">\r\n-            <Sidebar />\r\n+        <div className=\"flex h-screen overflow-hidden\">\r\n+            {/* Sidebar stays fixed */}\r\n+            <div className=\"flex-none\">\r\n+                <Sidebar />\r\n+            </div>\r\n \r\n-            <main className=\"flex-1 p-6 bg-gray-100 min-h-screen\">\r\n+            {/* Main content scrolls independently */}\r\n+            <main className=\"flex-1 p-6 bg-gray-100 overflow-auto\">\r\n                 <Outlet />\r\n             </main>\r\n         </div>\r\n     );\r\n"
+                }
+            ],
+            "date": 1770575326209,
+            "name": "Commit-0",
+            "content": "import Sidebar from \"./Sidebar\";\r\n\r\nconst Layout = ({ children }) => (\r\n    <div>\r\n        <Sidebar />\r\n        <main className=\"p-6 bg-gray-100 min-h-screen\">{children}</main>\r\n    </div>\r\n);\r\n\r\nexport default Layout;\r\n"
+        }
+    ]
+}

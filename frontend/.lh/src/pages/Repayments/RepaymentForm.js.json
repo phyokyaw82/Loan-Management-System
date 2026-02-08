@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Repayments/RepaymentForm.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250202,
+            "name": "Commit-0",
+            "content": "import { useState, useEffect } from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\nimport { createRepayment } from \"../../api/repaymentApi\";\r\nimport { getLoans } from \"../../api/loanApi\";\r\n\r\nconst RepaymentForm = () => {\r\n    const [repayment, setRepayment] = useState({ loan: \"\", paymentDate: \"\", amountPaid: \"\" });\r\n    const [loans, setLoans] = useState([]);\r\n    const navigate = useNavigate();\r\n\r\n    useEffect(() => { getLoans().then(setLoans); }, []);\r\n\r\n    const handleChange = e => setRepayment({ ...repayment, [e.target.name]: e.target.value });\r\n    const handleSubmit = async e => { e.preventDefault(); await createRepayment(repayment); navigate(\"/repayments\"); };\r\n\r\n    return (\r\n        <div className=\"max-w-md mx-auto\">\r\n            <h1 className=\"text-2xl font-bold mb-4\">Add Repayment</h1>\r\n            <form onSubmit={handleSubmit} className=\"bg-white p-6 rounded shadow space-y-4\">\r\n                <label>Loan</label>\r\n                <select name=\"loan\" value={repayment.loan} onChange={handleChange} className=\"w-full border p-2\">\r\n                    <option value=\"\">Select Loan</option>\r\n                    {loans.map(l => <option key={l._id} value={l._id}>{l.borrower?.fullName} - {l.amount}</option>)}\r\n                </select>\r\n                <label>Payment Date</label>\r\n                <input type=\"date\" name=\"paymentDate\" value={repayment.paymentDate} onChange={handleChange} className=\"w-full border p-2\" />\r\n                <label>Amount Paid</label>\r\n                <input type=\"number\" name=\"amountPaid\" value={repayment.amountPaid} onChange={handleChange} className=\"w-full border p-2\" />\r\n                <button type=\"submit\" className=\"bg-blue-500 text-white px-4 py-2 rounded\">Create</button>\r\n            </form>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default RepaymentForm;\r\n"
+        }
+    ]
+}

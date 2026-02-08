@@ -3,16 +3,24 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
-                    "date": 1770558964459,
+                    "date": 1770563196149,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770563204731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { Link } from \"react-router-dom\";\r\n \r\n const Navbar = () => (\r\n-    <nav className=\"bg-dark-600 text-white p-4 flex space-x-4\">\r\n+    <nav className=\"bg-gray-600 text-white p-4 flex space-x-4\">\r\n         <Link to=\"/\">Home</Link>\r\n         <Link to=\"/borrowers\">Borrowers</Link>\r\n         <Link to=\"/loans\">Loans</Link>\r\n         <Link to=\"/repayments\">Repayments</Link>\r\n"
+                },
+                {
+                    "date": 1770575242634,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,32 @@\n import { Link } from \"react-router-dom\";\r\n \r\n-const Navbar = () => (\r\n-    <nav className=\"bg-gray-600 text-white p-4 flex space-x-4\">\r\n-        <Link to=\"/\">Home</Link>\r\n-        <Link to=\"/borrowers\">Borrowers</Link>\r\n-        <Link to=\"/loans\">Loans</Link>\r\n-        <Link to=\"/repayments\">Repayments</Link>\r\n-        <Link to=\"/transactions\">Transactions</Link>\r\n-        <Link to=\"/contracts\">Contracts</Link>\r\n-    </nav>\r\n-);\r\n+const Sidebar = () => {\r\n+    return (\r\n+        <aside className=\"w-64 h-screen bg-gray-800 text-white flex flex-col p-4\">\r\n+            <h1 className=\"text-xl font-bold mb-6\">Loan System</h1>\r\n \r\n-export default Navbar;\r\n+            <nav className=\"flex flex-col space-y-3\">\r\n+                <Link to=\"/\" className=\"hover:bg-gray-700 p-2 rounded\">\r\n+                    Home\r\n+                </Link>\r\n+                <Link to=\"/borrowers\" className=\"hover:bg-gray-700 p-2 rounded\">\r\n+                    Borrowers\r\n+                </Link>\r\n+                <Link to=\"/loans\" className=\"hover:bg-gray-700 p-2 rounded\">\r\n+                    Loans\r\n+                </Link>\r\n+                <Link to=\"/repayments\" className=\"hover:bg-gray-700 p-2 rounded\">\r\n+                    Repayments\r\n+                </Link>\r\n+                <Link to=\"/transactions\" className=\"hover:bg-gray-700 p-2 rounded\">\r\n+                    Transactions\r\n+                </Link>\r\n+                <Link to=\"/contracts\" className=\"hover:bg-gray-700 p-2 rounded\">\r\n+                    Contracts\r\n+                </Link>\r\n+            </nav>\r\n+        </aside>\r\n+    );\r\n+};\r\n+\r\n+export default Sidebar;\r\n"
                 }
             ],
-            "date": 1770558964459,
+            "date": 1770563196149,
             "name": "Commit-0",
-            "content": "import { Link } from \"react-router-dom\";\r\n\r\nconst Navbar = () => (\r\n    <nav className=\"bg-blue-600 text-white p-4 flex gap-4\">\r\n        <Link to=\"/\">Home</Link>\r\n        <Link to=\"/borrowers\">Borrowers</Link>\r\n        <Link to=\"/loans\">Loans</Link>\r\n        <Link to=\"/repayments\">Repayments</Link>\r\n    </nav>\r\n);\r\n\r\nexport default Navbar;\r\n"
+            "content": "import { Link } from \"react-router-dom\";\r\n\r\nconst Navbar = () => (\r\n    <nav className=\"bg-dark-600 text-white p-4 flex space-x-4\">\r\n        <Link to=\"/\">Home</Link>\r\n        <Link to=\"/borrowers\">Borrowers</Link>\r\n        <Link to=\"/loans\">Loans</Link>\r\n        <Link to=\"/repayments\">Repayments</Link>\r\n        <Link to=\"/transactions\">Transactions</Link>\r\n        <Link to=\"/contracts\">Contracts</Link>\r\n    </nav>\r\n);\r\n\r\nexport default Navbar;\r\n"
         }
     ]
 }

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Home.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562922349,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562922349,
+            "name": "Commit-0",
+            "content": "const Home = () => {\r\n    return (\r\n        <div className=\"text-center mt-20\">\r\n            <h1 className=\"text-3xl font-bold\">Welcome to Loan Management System</h1>\r\n            <p className=\"mt-4 text-gray-600\">Use the navigation above to manage borrowers, loans, repayments, transactions, and contracts.</p>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default Home;  // <-- THIS is required\r\n"
+        }
+    ]
+}

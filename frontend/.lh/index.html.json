@@ -3,16 +3,20 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
-                    "date": 1770558964439,
+                    "date": 1770560890503,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770560904919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,13 @@\n-<!DOCTYPE html>\n+<!doctype html>\n <html lang=\"en\">\n-\n-<head>\n-  <meta charset=\"UTF-8\" />\n-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n-  <title>Tailwind Test</title>\n-</head>\n-\n-<body>\n-  <div id=\"root\"></div>\n-  <script type=\"module\" src=\"/src/main.jsx\"></script>\n-</body>\n-\n\\ No newline at end of file\n-</html>\n+  <head>\n+    <meta charset=\"UTF-8\" />\n+    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/vite.svg\" />\n+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n+    <title>Loan Management System</title>\n+  </head>\n+  <body>\n+    <div id=\"root\"></div>\n+    <script type=\"module\" src=\"/src/main.jsx\"></script>\n+  </body>\n+</html>\n"
                 }
             ],
-            "date": 1770558964439,
+            "date": 1770560890503,
             "name": "Commit-0",
-            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>Loan Management System</title>\n</head>\n\n<body>\n  <div id=\"root\"></div>\n  <script type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n\n</html>"
+            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n  <title>Tailwind Test</title>\n</head>\n\n<body>\n  <div id=\"root\"></div>\n  <script type=\"module\" src=\"/src/main.jsx\"></script>\n</body>\n\n</html>"
         }
     ]
 }

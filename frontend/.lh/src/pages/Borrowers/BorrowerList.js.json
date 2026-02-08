@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Borrowers/BorrowerList.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770562250205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770562250205,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from \"react\";\r\nimport { getBorrowers, deleteBorrower } from \"../../api/borrowerApi\";\r\nimport { Link } from \"react-router-dom\";\r\n\r\nconst BorrowerList = () => {\r\n    const [borrowers, setBorrowers] = useState([]);\r\n\r\n    const fetchBorrowers = async () => setBorrowers(await getBorrowers());\r\n    const handleDelete = async (id) => { await deleteBorrower(id); fetchBorrowers(); };\r\n\r\n    useEffect(() => { fetchBorrowers(); }, []);\r\n\r\n    return (\r\n        <div>\r\n            <h1 className=\"text-2xl font-bold mb-4\">Borrowers</h1>\r\n            <Link to=\"/borrowers/new\" className=\"bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block\">\r\n                Add Borrower\r\n            </Link>\r\n            <table className=\"min-w-full bg-white border\">\r\n                <thead>\r\n                    <tr>\r\n                        <th className=\"py-2 px-4 border\">Full Name</th>\r\n                        <th className=\"py-2 px-4 border\">Phone</th>\r\n                        <th className=\"py-2 px-4 border\">Email</th>\r\n                        <th className=\"py-2 px-4 border\">Actions</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    {borrowers.map(b => (\r\n                        <tr key={b._id}>\r\n                            <td className=\"py-2 px-4 border\">{b.fullName}</td>\r\n                            <td className=\"py-2 px-4 border\">{b.phone}</td>\r\n                            <td className=\"py-2 px-4 border\">{b.email}</td>\r\n                            <td className=\"py-2 px-4 border\">\r\n                                <Link to={`/borrowers/edit/${b._id}`} className=\"text-blue-500 mr-2\">Edit</Link>\r\n                                <button onClick={() => handleDelete(b._id)} className=\"text-red-500\">Delete</button>\r\n                            </td>\r\n                        </tr>\r\n                    ))}\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default BorrowerList;\r\n"
+        }
+    ]
+}
