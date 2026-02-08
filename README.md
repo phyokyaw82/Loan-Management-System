@@ -40,7 +40,7 @@ npm install
 
 ```
 PORT=5000
-MONGODB_URI=<your_mongodb_connection_string>
+MONGO_URI=<your_mongodb_connection_string>
 ```
 
 - Run the server:
