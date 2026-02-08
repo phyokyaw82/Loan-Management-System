@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1770576823393,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770583643568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n  */\r\n const FormRow = ({ label, children, helperText, className = \"\" }) => {\r\n     return (\r\n         <div className={`flex flex-col mb-4 ${className}`}>\r\n-            {label && <label className=\"mb-1 font-medium\">{label}</label>}\r\n+            {label && <label className=\"mb-1 font-small\">{label}</label>}\r\n             {children}\r\n             {helperText && <small className=\"text-gray-500 mt-1\">{helperText}</small>}\r\n         </div>\r\n     );\r\n"
+                },
+                {
+                    "date": 1770583673323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,14 @@\n-// src/components/FormRow.jsx\r\n import React from \"react\";\r\n \r\n-/**\r\n- * FormRow\r\n- * A reusable form row for labels + inputs/selects/textareas.\r\n- *\r\n- * Props:\r\n- * - label: string (label text)\r\n- * - children: React element (input, select, textarea)\r\n- * - helperText: string (optional helper text below input)\r\n- * - className: additional class for container (optional)\r\n- */\r\n const FormRow = ({ label, children, helperText, className = \"\" }) => {\r\n     return (\r\n         <div className={`flex flex-col mb-4 ${className}`}>\r\n-            {label && <label className=\"mb-1 font-small\">{label}</label>}\r\n+            {label && (\r\n+                <label className=\"mb-1 text-sm font-normal text-gray-700\">\r\n+                    {label}\r\n+                </label>\r\n+            )}\r\n             {children}\r\n             {helperText && <small className=\"text-gray-500 mt-1\">{helperText}</small>}\r\n         </div>\r\n     );\r\n"
                 }
             ],
             "date": 1770576823393,
