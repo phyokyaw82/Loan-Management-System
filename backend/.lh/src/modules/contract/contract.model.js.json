@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/modules/contract/contract.model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1770571295700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770571366365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n import mongoose from \"mongoose\";\r\n \r\n-const contractSchema = new mongoose.Schema(\r\n+const ContractSchema = new mongoose.Schema(\r\n     {\r\n         loan: { type: mongoose.Schema.Types.ObjectId, ref: \"Loan\", required: true },\r\n-        documentUrl: { type: String, required: true },\r\n+        documentUrl: { type: String, required: true }, // stored as URL for frontend\r\n         signingDate: { type: Date, required: true },\r\n     },\r\n     { timestamps: true }\r\n );\r\n \r\n-export default mongoose.model(\"Contract\", contractSchema);\r\n+const Contract = mongoose.model(\"Contract\", ContractSchema);\r\n+export default Contract;\r\n"
+                }
+            ],
+            "date": 1770571295700,
+            "name": "Commit-0",
+            "content": "import mongoose from \"mongoose\";\r\n\r\nconst contractSchema = new mongoose.Schema(\r\n    {\r\n        loan: { type: mongoose.Schema.Types.ObjectId, ref: \"Loan\", required: true },\r\n        documentUrl: { type: String, required: true },\r\n        signingDate: { type: Date, required: true },\r\n    },\r\n    { timestamps: true }\r\n);\r\n\r\nexport default mongoose.model(\"Contract\", contractSchema);\r\n"
+        }
+    ]
+}

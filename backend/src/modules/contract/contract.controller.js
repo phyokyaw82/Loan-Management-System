@@ -83,9 +83,15 @@ class ContractController {
             const contract = await contractService.getContractById(req.params.id);
             if (!contract) return res.status(404).json({ error: "Not found" });
 
-            // Delete file from server
-            const filePath = path.join(process.cwd(), contract.documentUrl);
-            if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+            if (contract.documentUrl) {
+                // Normalize path (VERY IMPORTANT)
+                const normalizedPath = contract.documentUrl.replace(/\\/g, "/");
+                const filePath = path.resolve(process.cwd(), normalizedPath);
+
+                if (fs.existsSync(filePath)) {
+                    fs.unlinkSync(filePath);
+                }
+            }
 
             await contractService.deleteContract(req.params.id);
             res.json({ message: "Deleted successfully" });
