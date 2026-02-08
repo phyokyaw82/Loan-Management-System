@@ -64,10 +64,10 @@ npm test
 ```bash
 cd frontend
 npm install
-npm start
+npm run dev
 ```
 
-> Frontend runs on **http://localhost:3001**
+> Frontend runs on **http://localhost:5174**
 
 ---
 
