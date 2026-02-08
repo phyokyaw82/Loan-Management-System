@@ -9,17 +9,6 @@ A **Loan Management System** built with the **MERN stack** (MongoDB, Express, Re
 
 ---
 
-## Project Structure
-
-
-
-loan-management-system/
-├── backend/ # Node.js + Express backend
-├── frontend/ # React frontend
-
-
----
-
 ## Technologies Used
 
 - **Frontend:** React, Tailwind CSS  
