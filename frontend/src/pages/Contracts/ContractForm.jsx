@@ -4,6 +4,7 @@ import { createContract, getContractById, updateContract } from "../../api/contr
 import { getLoans } from "../../api/loanApi";
 import FileUpload from "../../components/FileUpload";
 import PageToolbar from "../../components/PageToolbar";
+import FormRow from "../../components/FormRow"; // <- import FormRow
 
 const ContractForm = () => {
     const [contract, setContract] = useState({
@@ -23,7 +24,7 @@ const ContractForm = () => {
             getContractById(id).then((data) => {
                 setContract({
                     loan: data.loan?._id || "",
-                    document: null, // Cannot prefill file input
+                    document: null,
                     documentUrl: data.documentUrl || "",
                     signingDate: data.signingDate ? data.signingDate.slice(0, 10) : "",
                 });
@@ -46,8 +47,6 @@ const ContractForm = () => {
         const formData = new FormData();
         formData.append("loan", contract.loan);
         formData.append("signingDate", contract.signingDate);
-
-        // Append file only if selected
         if (contract.document) formData.append("document", contract.document);
 
         try {
@@ -65,14 +64,14 @@ const ContractForm = () => {
             <PageToolbar title={id ? "Edit Contract" : "Add Contract"} />
             <div className="max-w-md mx-auto">
                 <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow space-y-4">
-                    {/* Loan */}
-                    <div className="flex flex-col">
-                        <label className="mb-1 font-medium">Loan</label>
+
+                    {/* Loan Select */}
+                    <FormRow label="Loan">
                         <select
                             name="loan"
                             value={contract.loan}
                             onChange={handleChange}
-                            className="border p-2 rounded"
+                            className="border p-2 rounded w-full"
                         >
                             <option value="">Select Loan</option>
                             {loans.map((l) => (
@@ -81,35 +80,37 @@ const ContractForm = () => {
                                 </option>
                             ))}
                         </select>
-                    </div>
+                    </FormRow>
 
                     {/* Signing Date */}
-                    <div className="flex flex-col">
-                        <label className="mb-1 font-medium">Signing Date</label>
+                    <FormRow label="Signing Date">
                         <input
                             type="date"
                             name="signingDate"
                             value={contract.signingDate}
                             onChange={handleChange}
-                            className="border p-2 rounded"
+                            className="border p-2 rounded w-full"
                         />
-                    </div>
+                    </FormRow>
 
-                    {/* File Upload */}
-                    <div className="flex flex-col">
-                        <label className="mb-1 font-medium">Contract Document</label>
+                    {/* Contract Document */}
+                    <FormRow label="Contract Document">
                         <FileUpload
                             onFileSelect={handleFileSelect}
                             existingFileUrl={contract.documentUrl}
                         />
-                    </div>
-      
-                    {/* Submit */}
+                    </FormRow>
+
+                    {/* Submit Button */}
                     <div className="flex justify-end">
-                        <button type="submit" className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                        <button
+                            type="submit"
+                            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                        >
                             {id ? "Update" : "Create"}
                         </button>
                     </div>
+
                 </form>
             </div>
         </>

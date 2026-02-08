@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getBorrowers, deleteBorrower } from "../../api/borrowerApi";
 import PageToolbar from "../../components/PageToolbar";
 import DataTable from "../../components/DataTable";
-import { Link } from "react-router-dom";
 
 const BorrowerList = () => {
     const [borrowers, setBorrowers] = useState([]);
