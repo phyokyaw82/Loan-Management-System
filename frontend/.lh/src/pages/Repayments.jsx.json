@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Repayments.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770558964896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770558964896,
+            "name": "Commit-0",
+            "content": "import { useState, useEffect } from \"react\";\r\nimport api from \"../api/axios\";\r\n\r\nconst Repayments = () => {\r\n    const [repayments, setRepayments] = useState([]);\r\n    const [loanId, setLoanId] = useState(\"\");\r\n    const [amount, setAmount] = useState(\"\");\r\n\r\n    useEffect(() => {\r\n        fetchRepayments();\r\n    }, []);\r\n\r\n    const fetchRepayments = async () => {\r\n        try {\r\n            const res = await api.get(\"/repayments\");\r\n            setRepayments(res.data);\r\n        } catch (err) {\r\n            console.error(err);\r\n        }\r\n    };\r\n\r\n    const addRepayment = async (e) => {\r\n        e.preventDefault();\r\n        try {\r\n            await api.post(\"/repayments\", { loan: loanId, amount });\r\n            setLoanId(\"\");\r\n            setAmount(\"\");\r\n            fetchRepayments();\r\n        } catch (err) {\r\n            console.error(err);\r\n        }\r\n    };\r\n\r\n    return (\r\n        <div className=\"p-6\">\r\n            <h2 className=\"text-2xl font-bold mb-4\">Repayments</h2>\r\n\r\n            <form onSubmit={addRepayment} className=\"mb-6 flex gap-2\">\r\n                <input\r\n                    type=\"text\"\r\n                    placeholder=\"Loan ID\"\r\n                    value={loanId}\r\n                    onChange={(e) => setLoanId(e.target.value)}\r\n                    className=\"border p-2 rounded\"\r\n                />\r\n                <input\r\n                    type=\"number\"\r\n                    placeholder=\"Amount Paid\"\r\n                    value={amount}\r\n                    onChange={(e) => setAmount(e.target.value)}\r\n                    className=\"border p-2 rounded\"\r\n                />\r\n                <button type=\"submit\" className=\"bg-purple-600 text-white px-4 rounded\">\r\n                    Add Repayment\r\n                </button>\r\n            </form>\r\n\r\n            <table className=\"min-w-full border\">\r\n                <thead>\r\n                    <tr>\r\n                        <th className=\"border px-2 py-1\">Payment ID</th>\r\n                        <th className=\"border px-2 py-1\">Loan ID</th>\r\n                        <th className=\"border px-2 py-1\">Amount Paid</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    {repayments.map((r) => (\r\n                        <tr key={r._id}>\r\n                            <td className=\"border px-2 py-1\">{r._id}</td>\r\n                            <td className=\"border px-2 py-1\">{r.loan}</td>\r\n                            <td className=\"border px-2 py-1\">{r.amount}</td>\r\n                        </tr>\r\n                    ))}\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default Repayments;\r\n"
+        }
+    ]
+}

@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1770558289572,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770558964744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+export default {\r\n+    plugins: {\r\n+        \"@tailwindcss/postcss\": {},\r\n+    },\r\n+};\r\n"
                 }
             ],
             "date": 1770558289572,

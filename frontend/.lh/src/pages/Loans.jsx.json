@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/Loans.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770558964903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770558964903,
+            "name": "Commit-0",
+            "content": "import { useState, useEffect } from \"react\";\r\nimport api from \"../api/axios\";\r\n\r\nconst Borrowers = () => {\r\n    const [borrowers, setBorrowers] = useState([]);\r\n    const [name, setName] = useState(\"\");\r\n    const [phone, setPhone] = useState(\"\");\r\n\r\n    // Fetch borrowers from backend\r\n    useEffect(() => {\r\n        fetchBorrowers();\r\n    }, []);\r\n\r\n    const fetchBorrowers = async () => {\r\n        try {\r\n            const res = await api.get(\"/borrowers\");\r\n            setBorrowers(res.data);\r\n        } catch (err) {\r\n            console.error(err);\r\n        }\r\n    };\r\n\r\n    const addBorrower = async (e) => {\r\n        e.preventDefault();\r\n        try {\r\n            await api.post(\"/borrowers\", { fullName: name, phone });\r\n            setName(\"\");\r\n            setPhone(\"\");\r\n            fetchBorrowers();\r\n        } catch (err) {\r\n            console.error(err);\r\n        }\r\n    };\r\n\r\n    return (\r\n        <div className=\"p-6\">\r\n            <h2 className=\"text-2xl font-bold mb-4\">Borrowers</h2>\r\n\r\n            <form onSubmit={addBorrower} className=\"mb-6 flex gap-2\">\r\n                <input\r\n                    type=\"text\"\r\n                    placeholder=\"Full Name\"\r\n                    value={name}\r\n                    onChange={(e) => setName(e.target.value)}\r\n                    className=\"border p-2 rounded\"\r\n                />\r\n                <input\r\n                    type=\"text\"\r\n                    placeholder=\"Phone\"\r\n                    value={phone}\r\n                    onChange={(e) => setPhone(e.target.value)}\r\n                    className=\"border p-2 rounded\"\r\n                />\r\n                <button type=\"submit\" className=\"bg-blue-600 text-white px-4 rounded\">\r\n                    Add\r\n                </button>\r\n            </form>\r\n\r\n            <table className=\"min-w-full border\">\r\n                <thead>\r\n                    <tr>\r\n                        <th className=\"border px-2 py-1\">Name</th>\r\n                        <th className=\"border px-2 py-1\">Phone</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    {borrowers.map((b) => (\r\n                        <tr key={b._id}>\r\n                            <td className=\"border px-2 py-1\">{b.fullName}</td>\r\n                            <td className=\"border px-2 py-1\">{b.phone}</td>\r\n                        </tr>\r\n                    ))}\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default Borrowers;\r\n"
+        }
+    ]
+}

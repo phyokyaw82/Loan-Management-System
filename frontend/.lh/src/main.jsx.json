@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1770558289832,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770558964471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import React from \"react\";\n+import ReactDOM from \"react-dom/client\";\n+import App from \"./App\";\n+import \"./index.css\";\n+\n+ReactDOM.createRoot(document.getElementById(\"root\")).render(\n+  <React.StrictMode>\n+    <App />\n+  </React.StrictMode>\n+);\n"
                 }
             ],
             "date": 1770558289832,
