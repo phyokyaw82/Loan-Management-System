@@ -13,7 +13,6 @@ export const getOriginalFileName = (documentUrl = "") => {
     return fileName.replace(/^(\d+-)+/, "");
 };
 
-
 const FileUpload = ({ onFileSelect, existingFileUrl }) => {
     const [file, setFile] = useState(null);
     const [showInput, setShowInput] = useState(true);
@@ -56,14 +55,15 @@ const FileUpload = ({ onFileSelect, existingFileUrl }) => {
                 />
             ) : (
                 <div className="flex items-center gap-3">
-                    <span className="text-gray-700">
+                    {/* Muted and truncated file name */}
+                    <span className="text-gray-400 truncate max-w-xs">
                         {displayName}
                     </span>
 
                     <button
                         type="button"
                         onClick={handleRemove}
-                        className="text-red-500"
+                        className="text-red-500 hover:text-red-700 transition"
                     >
                         Remove
                     </button>
@@ -73,7 +73,7 @@ const FileUpload = ({ onFileSelect, existingFileUrl }) => {
                             href={`http://localhost:5000/${existingFileUrl.replace(/\\/g, "/")}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-500 underline"
+                            className="text-blue-500 hover:text-blue-700 transition"
                         >
                             View
                         </a>

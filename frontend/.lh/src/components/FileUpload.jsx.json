@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1770572681811,
@@ -52,6 +52,22 @@
                 {
                     "date": 1770575049866,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,14 +8,13 @@\n export const getOriginalFileName = (documentUrl = \"\") => {\r\n     const fileName = documentUrl.split(/[\\\\/]/).pop();\r\n     if (!fileName) return \"\";\r\n \r\n-    const parts = fileName.split(\"-\");\r\n-    return parts.length > 2\r\n-        ? parts.slice(2).join(\"-\")\r\n-        : fileName;\r\n+    // remove all leading \"number-\" prefixes\r\n+    return fileName.replace(/^(\\d+-)+/, \"\");\r\n };\r\n \r\n+\r\n const FileUpload = ({ onFileSelect, existingFileUrl }) => {\r\n     const [file, setFile] = useState(null);\r\n     const [showInput, setShowInput] = useState(true);\r\n     const [displayName, setDisplayName] = useState(\"\");\r\n"
+                },
+                {
+                    "date": 1770580841915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n     // remove all leading \"number-\" prefixes\r\n     return fileName.replace(/^(\\d+-)+/, \"\");\r\n };\r\n \r\n-\r\n const FileUpload = ({ onFileSelect, existingFileUrl }) => {\r\n     const [file, setFile] = useState(null);\r\n     const [showInput, setShowInput] = useState(true);\r\n     const [displayName, setDisplayName] = useState(\"\");\r\n@@ -55,16 +54,14 @@\n                     className=\"border p-2 rounded\"\r\n                 />\r\n             ) : (\r\n                 <div className=\"flex items-center gap-3\">\r\n-                    <span className=\"text-gray-700\">\r\n-                        {displayName}\r\n-                    </span>\r\n+                    <span className=\"text-gray-700\">{displayName}</span>\r\n \r\n                     <button\r\n                         type=\"button\"\r\n                         onClick={handleRemove}\r\n-                        className=\"text-red-500\"\r\n+                        className=\"px-3 py-1 rounded bg-red-500 text-white hover:bg-red-600 transition\"\r\n                     >\r\n                         Remove\r\n                     </button>\r\n \r\n@@ -72,9 +69,9 @@\n                         <a\r\n                             href={`http://localhost:5000/${existingFileUrl.replace(/\\\\/g, \"/\")}`}\r\n                             target=\"_blank\"\r\n                             rel=\"noopener noreferrer\"\r\n-                            className=\"text-blue-500 underline\"\r\n+                            className=\"px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition\"\r\n                         >\r\n                             View\r\n                         </a>\r\n                     )}\r\n"
+                },
+                {
+                    "date": 1770580893934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \r\n                     <button\r\n                         type=\"button\"\r\n                         onClick={handleRemove}\r\n-                        className=\"px-3 py-1 rounded bg-red-500 text-white hover:bg-red-600 transition\"\r\n+                        className=\"text-red-500 hover:text-red-700 transition\"\r\n                     >\r\n                         Remove\r\n                     </button>\r\n \r\n@@ -69,9 +69,9 @@\n                         <a\r\n                             href={`http://localhost:5000/${existingFileUrl.replace(/\\\\/g, \"/\")}`}\r\n                             target=\"_blank\"\r\n                             rel=\"noopener noreferrer\"\r\n-                            className=\"px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600 transition\"\r\n+                            className=\"text-blue-500 hover:text-blue-700 transition\"\r\n                         >\r\n                             View\r\n                         </a>\r\n                     )}\r\n"
+                },
+                {
+                    "date": 1770580950866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,12 @@\n                     className=\"border p-2 rounded\"\r\n                 />\r\n             ) : (\r\n                 <div className=\"flex items-center gap-3\">\r\n-                    <span className=\"text-gray-700\">{displayName}</span>\r\n+                    {/* Truncated file name */}\r\n+                    <span className=\"text-gray-700 truncate max-w-xs\">\r\n+                        {displayName}\r\n+                    </span>\r\n \r\n                     <button\r\n                         type=\"button\"\r\n                         onClick={handleRemove}\r\n"
+                },
+                {
+                    "date": 1770580998167,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,10 +54,10 @@\n                     className=\"border p-2 rounded\"\r\n                 />\r\n             ) : (\r\n                 <div className=\"flex items-center gap-3\">\r\n-                    {/* Truncated file name */}\r\n-                    <span className=\"text-gray-700 truncate max-w-xs\">\r\n+                    {/* Muted and truncated file name */}\r\n+                    <span className=\"text-gray-400 truncate max-w-xs\">\r\n                         {displayName}\r\n                     </span>\r\n \r\n                     <button\r\n"
                 }
             ],
             "date": 1770572681811,
