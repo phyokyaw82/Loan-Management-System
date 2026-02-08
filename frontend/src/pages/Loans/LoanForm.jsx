@@ -4,19 +4,31 @@ import { createLoan, getLoanById, updateLoan } from "../../api/loanApi";
 import { getBorrowers } from "../../api/borrowerApi";
 import PageToolbar from "../../components/PageToolbar";
 import FormRow from "../../components/FormRow";
+import { getInterestRates } from "../../api/interestRateApi";
 
 const LoanForm = () => {
     const [loan, setLoan] = useState({
         borrower: "",
-        amount: "",
+        amount: 0,
         type: "",
         startDate: "",
         endDate: "",
-        interestRate: "",
+        interestRate: 5,
     });
     const [borrowers, setBorrowers] = useState([]);
+    const [interestRates, setInterestRates] = useState([]);
+
     const navigate = useNavigate();
     const { id } = useParams();
+
+    useEffect(() => {
+        const fetchInterestRates = async () => {
+            const rates = await getInterestRates();
+            setInterestRates(rates);
+        };
+
+        fetchInterestRates();
+    }, []);
 
     useEffect(() => {
         getBorrowers().then(setBorrowers);
@@ -60,14 +72,11 @@ const LoanForm = () => {
             <PageToolbar title={id ? "Edit Loan" : "Add Loan"} />
             <div className="max-w-md mx-auto">
                 <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow space-y-4">
-
                     <FormRow label="Borrower">
-                        <select
-                            name="borrower"
-                            value={loan.borrower}
+                        <select name="borrower"
+                            value={loan.borrower._id}
                             onChange={handleChange}
-                            className="w-full border p-2 rounded"
-                        >
+                            className="w-full border p-2 rounded">
                             <option value="">Select Borrower</option>
                             {borrowers.map((b) => (
                                 <option key={b._id} value={b._id}>
@@ -84,17 +93,22 @@ const LoanForm = () => {
                             value={loan.amount}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
                     <FormRow label="Loan Type">
-                        <input
-                            type="text"
+                        <select
                             name="type"
                             value={loan.type}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
-                        />
+                            required
+                        >
+                            <option value="">Select Loan Type</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Mortgage">Mortgage</option>
+                        </select>
                     </FormRow>
 
                     <FormRow label="Start Date">
@@ -104,6 +118,7 @@ const LoanForm = () => {
                             value={loan.startDate}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -114,17 +129,25 @@ const LoanForm = () => {
                             value={loan.endDate}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
                     <FormRow label="Interest Rate (%)">
-                        <input
-                            type="number"
+                        <select
                             name="interestRate"
                             value={loan.interestRate}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
-                        />
+                            required
+                        >
+                            <option value="">Select Rate</option>
+                            {interestRates.map((r) => (
+                                <option key={r.rate} value={r.rate}>
+                                    {r.rate}%
+                                </option>
+                            ))}
+                        </select>
                     </FormRow>
 
                     <div className="flex justify-end">
@@ -136,7 +159,7 @@ const LoanForm = () => {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div >
         </>
     );
 };

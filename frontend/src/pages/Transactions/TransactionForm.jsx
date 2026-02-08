@@ -10,7 +10,7 @@ const TransactionForm = () => {
     const [transaction, setTransaction] = useState({
         loan: "",
         type: "",
-        amount: "",
+        amount: 0,
         description: "",
         transactionDate: ""
     });

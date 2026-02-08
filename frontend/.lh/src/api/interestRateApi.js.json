@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/api/interestRateApi.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770582980978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770582980978,
+            "name": "Commit-0",
+            "content": "import axios from \"axios\";\r\nconst API_URL = \"http://localhost:5000/api/interestrates\";\r\n\r\nexport const getInterestRates = async () => (await axios.get(API_URL)).data;\r\nexport const getInterestRateById = async (id) => (await axios.get(`${API_URL}/${id}`)).data;\r\nexport const createInterestRate = async (interestRate) => (await axios.post(API_URL, interestRate)).data;\r\nexport const updateInterestRate = async (id, interestRate) => (await axios.put(`${API_URL}/${id}`, interestRate)).data;\r\nexport const deleteInterestRate = async (id) => (await axios.delete(`${API_URL}/${id}`)).data;\r\n"
+        }
+    ]
+}

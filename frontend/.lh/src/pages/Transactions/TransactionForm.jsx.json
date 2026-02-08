@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1770566229289,
@@ -52,6 +52,10 @@
                 {
                     "date": 1770577730547,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,13 +59,11 @@\n     };\r\n \r\n     return (\r\n         <>\r\n+            <PageToolbar title={id ? \"Edit Transaction\" : \"Add Transaction\"} />\r\n             <div className=\"max-w-md mx-auto\">\r\n-                <PageToolbar title={id ? \"Edit Transaction\" : \"Add Transaction\"} />\r\n-\r\n                 <form onSubmit={handleSubmit} className=\"bg-white p-6 rounded shadow space-y-4\">\r\n-\r\n                     <FormRow label=\"Loan\">\r\n                         <select\r\n                             name=\"loan\"\r\n                             value={transaction.loan}\r\n"
+                },
+                {
+                    "date": 1770582005559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n const TransactionForm = () => {\r\n     const [transaction, setTransaction] = useState({\r\n         loan: \"\",\r\n         type: \"\",\r\n-        amount: \"\",\r\n+        amount: 0,\r\n         description: \"\",\r\n         transactionDate: \"\"\r\n     });\r\n \r\n"
                 }
             ],
             "date": 1770566229289,

@@ -27,7 +27,7 @@ const RepaymentForm = () => {
                 setRepayment({
                     loan: data.loan?._id || "",
                     paymentDate: data.paymentDate ? data.paymentDate.slice(0, 10) : "",
-                    amountPaid: data.amountPaid || "",
+                    amountPaid: data.amountPaid || 0,
                     paymentTerm: data.paymentTerm || "",
                     description: data.description || ""
                 });
