@@ -42,28 +42,30 @@ const DataTable = ({ columns, data, actions }) => {
                                     style={{ width: actionColumnWidth }}
                                 >
                                     {actions.map((action, idx) => {
+                                        const baseClass = "px-3 py-1 rounded transition";
+
                                         if (action.type === "link")
                                             return (
                                                 <Link
                                                     key={idx}
                                                     to={action.to(row)}
-                                                    className={`px-3 py-1 rounded text-blue-500 hover:text-blue-700 transition ${action.className || ""
-                                                        }`}
+                                                    className={`${baseClass} ${action.className || "text-blue-500 hover:text-blue-700"}`}
                                                 >
                                                     {action.label}
                                                 </Link>
                                             );
+
                                         if (action.type === "button")
                                             return (
                                                 <button
                                                     key={idx}
                                                     onClick={() => action.onClick(row)}
-                                                    className={`px-3 py-1 rounded text-gray-700 hover:text-gray-900 transition ${action.className || ""
-                                                        }`}
+                                                    className={`${baseClass} ${action.className || "text-gray-700 hover:text-gray-900"}`}
                                                 >
                                                     {action.label}
                                                 </button>
                                             );
+
                                         return null;
                                     })}
                                 </td>
