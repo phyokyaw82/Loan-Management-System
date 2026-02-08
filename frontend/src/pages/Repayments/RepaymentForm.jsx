@@ -69,6 +69,7 @@ const RepaymentForm = () => {
                             value={repayment.loan}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         >
                             <option value="">Select Loan</option>
                             {loans.map((l) => (
@@ -86,6 +87,7 @@ const RepaymentForm = () => {
                             value={repayment.paymentDate}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -96,6 +98,7 @@ const RepaymentForm = () => {
                             value={repayment.amountPaid}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -105,6 +108,7 @@ const RepaymentForm = () => {
                             value={repayment.paymentTerm}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         >
                             <option value="">Select Term</option>
                             {termOptions.map((t) => (

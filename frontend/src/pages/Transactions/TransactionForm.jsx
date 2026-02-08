@@ -69,6 +69,7 @@ const TransactionForm = () => {
                             value={transaction.loan}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         >
                             <option value="">Select Loan</option>
                             {loans.map((l) => (
@@ -85,6 +86,7 @@ const TransactionForm = () => {
                             value={transaction.type}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         >
                             <option value="">Select Type</option>
                             {typeOptions.map((t) => (
@@ -100,6 +102,7 @@ const TransactionForm = () => {
                             value={transaction.amount}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -120,6 +123,7 @@ const TransactionForm = () => {
                             value={transaction.transactionDate}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 

@@ -37,6 +37,7 @@ const BorrowerForm = () => {
                             value={borrower.fullName}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -47,6 +48,7 @@ const BorrowerForm = () => {
                             value={borrower.phone}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -57,6 +59,7 @@ const BorrowerForm = () => {
                             value={borrower.email}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -67,6 +70,7 @@ const BorrowerForm = () => {
                             value={borrower.address}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 
@@ -77,6 +81,7 @@ const BorrowerForm = () => {
                             value={borrower.nrc}
                             onChange={handleChange}
                             className="w-full border p-2 rounded"
+                            required
                         />
                     </FormRow>
 

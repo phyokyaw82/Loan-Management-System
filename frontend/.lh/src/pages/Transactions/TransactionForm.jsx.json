@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1770566229289,
@@ -56,6 +56,10 @@
                 {
                     "date": 1770582005559,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n const TransactionForm = () => {\r\n     const [transaction, setTransaction] = useState({\r\n         loan: \"\",\r\n         type: \"\",\r\n-        amount: \"\",\r\n+        amount: 0,\r\n         description: \"\",\r\n         transactionDate: \"\"\r\n     });\r\n \r\n"
+                },
+                {
+                    "date": 1770583918974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,8 +68,9 @@\n                             name=\"loan\"\r\n                             value={transaction.loan}\r\n                             onChange={handleChange}\r\n                             className=\"w-full border p-2 rounded\"\r\n+                            required\r\n                         >\r\n                             <option value=\"\">Select Loan</option>\r\n                             {loans.map((l) => (\r\n                                 <option key={l._id} value={l._id}>\r\n@@ -84,8 +85,9 @@\n                             name=\"type\"\r\n                             value={transaction.type}\r\n                             onChange={handleChange}\r\n                             className=\"w-full border p-2 rounded\"\r\n+                            required\r\n                         >\r\n                             <option value=\"\">Select Type</option>\r\n                             {typeOptions.map((t) => (\r\n                                 <option key={t} value={t}>{t}</option>\r\n@@ -99,8 +101,9 @@\n                             name=\"amount\"\r\n                             value={transaction.amount}\r\n                             onChange={handleChange}\r\n                             className=\"w-full border p-2 rounded\"\r\n+                            required\r\n                         />\r\n                     </FormRow>\r\n \r\n                     <FormRow label=\"Description\">\r\n@@ -119,8 +122,9 @@\n                             name=\"transactionDate\"\r\n                             value={transaction.transactionDate}\r\n                             onChange={handleChange}\r\n                             className=\"w-full border p-2 rounded\"\r\n+                            required\r\n                         />\r\n                     </FormRow>\r\n \r\n                     <div className=\"flex justify-end\">\r\n"
                 }
             ],
             "date": 1770566229289,

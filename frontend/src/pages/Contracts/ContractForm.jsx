@@ -72,6 +72,7 @@ const ContractForm = () => {
                             value={contract.loan}
                             onChange={handleChange}
                             className="border p-2 rounded w-full"
+                            required
                         >
                             <option value="">Select Loan</option>
                             {loans.map((l) => (
@@ -90,6 +91,7 @@ const ContractForm = () => {
                             value={contract.signingDate}
                             onChange={handleChange}
                             className="border p-2 rounded w-full"
+                            required
                         />
                     </FormRow>
 
