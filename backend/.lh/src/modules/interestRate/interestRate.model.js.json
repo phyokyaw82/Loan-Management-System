@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/modules/interestRate/interestRate.model.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770614518865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770614518865,
+            "name": "Commit-0",
+            "content": "import mongoose from \"mongoose\";\r\n\r\nconst interestRateSchema = new mongoose.Schema(\r\n  {\r\n    rate: { type: Number, required: true, unique: true },\r\n  },\r\n  { timestamps: true }\r\n);\r\n\r\nexport default mongoose.model(\"InterestRate\", interestRateSchema);\r\n"
+        }
+    ]
+}
