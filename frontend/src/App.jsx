@@ -11,6 +11,8 @@ import TransactionList from "./pages/Transactions/TransactionList";
 import TransactionForm from "./pages/Transactions/TransactionForm";
 import ContractList from "./pages/Contracts/ContractList";
 import ContractForm from "./pages/Contracts/ContractForm";
+import InterestRateList from "./pages/InterestRate/InterestRateList";
+import InterestRateForm from "./pages/InterestRate/InterestRateForm";
 
 function App() {
   return (
@@ -39,6 +41,10 @@ function App() {
           <Route path="/contracts" element={<ContractList />} />
           <Route path="/contracts/new" element={<ContractForm />} />
           <Route path="/contracts/edit/:id" element={<ContractForm />} />
+
+          <Route path="/interestRates" element={<InterestRateList />} />
+          <Route path="/interestRates/new" element={<InterestRateForm />} />
+          <Route path="/interestRates/edit/:id" element={<InterestRateForm />} />
         </Route>
       </Routes>
     </Router>

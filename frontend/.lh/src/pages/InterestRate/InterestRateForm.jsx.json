@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/pages/InterestRate/InterestRateForm.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1770698761492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770698964251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { useState, useEffect } from \"react\";\r\n import { useNavigate, useParams } from \"react-router-dom\";\r\n-import { createInterestRate, updateInterestRate } from \"../../api/interestRateApi\";\r\n+import { createInterestRate, updateInterestRate, getInterestRateById } from \"../../api/interestRateApi\";\r\n import PageToolbar from \"../../components/PageToolbar\";\r\n import FormRow from \"../../components/FormRow\";\r\n \r\n const InterestRateForm = () => {\r\n"
+                },
+                {
+                    "date": 1770699137467,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n                     <FormRow label=\"Interest Rate\">\r\n                         <input\r\n                             type=\"number\"\r\n                             name=\"rate\"\r\n-                            value={borrower.rate}\r\n+                            value={interestRate.rate}\r\n                             onChange={handleChange}\r\n                             className=\"w-full border p-2 rounded\"\r\n                             required\r\n                         />\r\n"
+                }
+            ],
+            "date": 1770698761492,
+            "name": "Commit-0",
+            "content": "import { useState, useEffect } from \"react\";\r\nimport { useNavigate, useParams } from \"react-router-dom\";\r\nimport { createInterestRate, updateInterestRate } from \"../../api/interestRateApi\";\r\nimport PageToolbar from \"../../components/PageToolbar\";\r\nimport FormRow from \"../../components/FormRow\";\r\n\r\nconst InterestRateForm = () => {\r\n    const [interestRate, setInterestRate] = useState({ rate: 0 });\r\n    const navigate = useNavigate();\r\n    const { id } = useParams();\r\n\r\n    useEffect(() => {\r\n        if (id) {\r\n            getInterestRateById(id).then(setInterestRate);\r\n        }\r\n    }, [id]);\r\n\r\n    const handleChange = (e) => setInterestRate({ ...interestRate, [e.target.name]: e.target.value });\r\n\r\n    const handleSubmit = async (e) => {\r\n        e.preventDefault();\r\n        if (id) await updateInterestRate(id, interestRate);\r\n        else await createInterestRate(interestRate);\r\n        navigate(\"/interestRates\");\r\n    };\r\n\r\n    return (\r\n        <>\r\n            <PageToolbar title={id ? \"Edit Interest Rate\" : \"Add Interest Rate\"} />\r\n            <div className=\"max-w-md mx-auto\">\r\n                <form onSubmit={handleSubmit} className=\"bg-white p-6 rounded shadow\">\r\n\r\n                    <FormRow label=\"Interest Rate\">\r\n                        <input\r\n                            type=\"number\"\r\n                            name=\"rate\"\r\n                            value={borrower.rate}\r\n                            onChange={handleChange}\r\n                            className=\"w-full border p-2 rounded\"\r\n                            required\r\n                        />\r\n                    </FormRow>\r\n\r\n                    <div className=\"flex justify-end\">\r\n                        <button\r\n                            type=\"submit\"\r\n                            className=\"bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600\"\r\n                        >\r\n                            {id ? \"Update\" : \"Create\"}\r\n                        </button>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </>\r\n    );\r\n};\r\n\r\nexport default InterestRateForm;\r\n"
+        }
+    ]
+}

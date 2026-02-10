@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1770577804781,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1770698837471,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,11 @@\n                 </NavLink>\r\n                 <NavLink to=\"/contracts\" className={linkClasses}>\r\n                     Contracts\r\n                 </NavLink>\r\n+                <NavLink to=\"/interestRates\" className={linkClasses}>\r\n+                    Interest Rates\r\n+                </NavLink>\r\n             </nav>\r\n         </aside>\r\n     );\r\n };\r\n"
                 }
             ],
             "date": 1770577804781,

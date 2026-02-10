@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/pages/InterestRate/InterestRateList.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1770698760398,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1770698760398,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from \"react\";\r\nimport { getInterestRateById, getInterestRates, deleteInterestRate } from \"../../api/interestRateApi\";\r\nimport PageToolbar from \"../../components/PageToolbar\";\r\nimport DataTable from \"../../components/DataTable\";\r\n\r\nconst InterestRateList = () => {\r\n    const [interestRates, setInterestRates] = useState([]);\r\n\r\n    const fetchInterestRates = async () => {\r\n        const data = await getInterestRates();\r\n        setInterestRates(data);\r\n    };\r\n\r\n    const handleDelete = async (interestRate) => {\r\n        if (window.confirm(`Are you sure you want to delete ${interestRate.rate}?`)) {\r\n            await deleteInterestRate(interestRate._id);\r\n            fetchInterestRates();\r\n        }\r\n    };\r\n\r\n    useEffect(() => {\r\n        fetchInterestRates();\r\n    }, []);\r\n\r\n    // Define columns\r\n    const columns = [\r\n        { key: \"rate\", label: \"Interest Rate\" },\r\n    ];\r\n\r\n    // Define actions\r\n    const actions = [\r\n        {\r\n            type: \"link\",\r\n            label: \"Edit\",\r\n            to: (b) => `/interestRates/edit/${b._id}`,\r\n            className: \"text-blue-500\",\r\n        },\r\n        {\r\n            type: \"button\",\r\n            label: \"Delete\",\r\n            onClick: handleDelete,\r\n            className: \"text-red-500\",\r\n        },\r\n    ];\r\n\r\n    return (\r\n        <>\r\n            <PageToolbar\r\n                title=\"Interest Rates\"\r\n                buttonLabel=\"Add Interest Rate\"\r\n                buttonLink=\"/interestRates/new\"\r\n            />\r\n\r\n            <DataTable columns={columns} data={interestRates} actions={actions} />\r\n        </>\r\n    );\r\n};\r\n\r\nexport default InterestRateList;\r\n"
+        }
+    ]
+}

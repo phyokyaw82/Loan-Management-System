@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1770559991650,
@@ -52,6 +52,10 @@
                 {
                     "date": 1770575501200,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,11 +14,13 @@\n \n function App() {\n   return (\n     <Router>\n-      <Layout>\n-        <Routes>\n+      <Routes>\n+        {/* Layout wrapper */}\n+        <Route element={<Layout />}>\n           <Route path=\"/\" element={<Home />} />\n+\n           <Route path=\"/borrowers\" element={<BorrowerList />} />\n           <Route path=\"/borrowers/new\" element={<BorrowerForm />} />\n           <Route path=\"/borrowers/edit/:id\" element={<BorrowerForm />} />\n \n@@ -36,10 +38,10 @@\n \n           <Route path=\"/contracts\" element={<ContractList />} />\n           <Route path=\"/contracts/new\" element={<ContractForm />} />\n           <Route path=\"/contracts/edit/:id\" element={<ContractForm />} />\n-        </Routes>\n-      </Layout>\n+        </Route>\n+      </Routes>\n     </Router>\n   );\n }\n \n"
+                },
+                {
+                    "date": 1770698837468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n import TransactionList from \"./pages/Transactions/TransactionList\";\n import TransactionForm from \"./pages/Transactions/TransactionForm\";\n import ContractList from \"./pages/Contracts/ContractList\";\n import ContractForm from \"./pages/Contracts/ContractForm\";\n+import InterestRateList from \"./pages/InterestRate/InterestRateList\";\n+import InterestRateForm from \"./pages/InterestRate/InterestRateForm\";\n \n function App() {\n   return (\n     <Router>\n@@ -38,8 +40,12 @@\n \n           <Route path=\"/contracts\" element={<ContractList />} />\n           <Route path=\"/contracts/new\" element={<ContractForm />} />\n           <Route path=\"/contracts/edit/:id\" element={<ContractForm />} />\n+\n+          <Route path=\"/interestRates\" element={<InterestRateList />} />\n+          <Route path=\"/interestRates/new\" element={<InterestRateForm />} />\n+          <Route path=\"/interestRates/edit/:id\" element={<InterestRateForm />} />\n         </Route>\n       </Routes>\n     </Router>\n   );\n"
                 }
             ],
             "date": 1770559991650,

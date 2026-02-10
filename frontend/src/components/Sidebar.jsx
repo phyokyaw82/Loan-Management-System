@@ -26,6 +26,9 @@ const Sidebar = () => {
                 <NavLink to="/contracts" className={linkClasses}>
                     Contracts
                 </NavLink>
+                <NavLink to="/interestRates" className={linkClasses}>
+                    Interest Rates
+                </NavLink>
             </nav>
         </aside>
     );
