@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createTransaction, getTransactionById, updateTransaction } from "../../api/transactionApi";
+import {
+    createTransaction,
+    getTransactionById,
+    updateTransaction
+} from "../../api/transactionApi";
 import { getLoans } from "../../api/loanApi";
 import LoanHistory from "./LoanHistory";
 import PageToolbar from "../../components/PageToolbar";
@@ -33,7 +37,9 @@ const TransactionForm = () => {
                     type: txData.type || "",
                     amount: txData.amount || 0,
                     description: txData.description || "",
-                    transactionDate: txData.transactionDate ? txData.transactionDate.slice(0, 10) : ""
+                    transactionDate: txData.transactionDate
+                        ? txData.transactionDate.slice(0, 10)
+                        : ""
                 });
             }
         };
@@ -41,9 +47,14 @@ const TransactionForm = () => {
         fetchData();
     }, [id]);
 
-    // Selected loan object
+    // Selected loan
     const selectedLoan = loans.find((l) => l._id === transaction.loan);
-    const remainingBalance = selectedLoan?.balance || 0;
+
+    // Remaining balance (IMPORTANT: must come from backend)
+    const remainingBalance =
+        selectedLoan?.balance ??
+        selectedLoan?.remainingBalance ??
+        0;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -58,7 +69,7 @@ const TransactionForm = () => {
 
         const amount = Number(transaction.amount);
 
-        // Check balance only if type is "Repayment"
+        // Validate repayment
         if (transaction.type === "Repayment" && amount > remainingBalance) {
             alert(`Amount cannot exceed remaining loan balance: ${remainingBalance}`);
             return;
@@ -67,12 +78,17 @@ const TransactionForm = () => {
         const payload = {
             ...transaction,
             amount,
-            transactionDate: transaction.transactionDate ? new Date(transaction.transactionDate) : new Date()
+            transactionDate: transaction.transactionDate
+                ? new Date(transaction.transactionDate)
+                : new Date()
         };
 
         try {
-            if (id) await updateTransaction(id, payload);
-            else await createTransaction(payload);
+            if (id) {
+                await updateTransaction(id, payload);
+            } else {
+                await createTransaction(payload);
+            }
             navigate("/transactions");
         } catch (err) {
             console.error(err);
@@ -83,10 +99,13 @@ const TransactionForm = () => {
     return (
         <>
             <PageToolbar title={id ? "Edit Transaction" : "Add Transaction"} />
-            <div className="max-w-md mx-auto">
-                <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow space-y-4">
 
-                    {/* Loan selection */}
+            <div className="max-w-md mx-auto">
+                <form
+                    onSubmit={handleSubmit}
+                    className="bg-white p-6 rounded shadow space-y-4"
+                >
+                    {/* Loan */}
                     <FormRow label="Loan">
                         <select
                             name="loan"
@@ -98,11 +117,14 @@ const TransactionForm = () => {
                             <option value="">Select Loan</option>
                             {loans.map((l) => (
                                 <option key={l._id} value={l._id}>
-                                    {l.borrower?.fullName ? `${l.borrower.fullName}-${l.amount}` : `Unknown-${l.amount}`}
+                                    {l.borrower?.fullName
+                                        ? `${l.borrower.fullName} - ${l.amount}`
+                                        : `Unknown - ${l.amount}`}
                                 </option>
                             ))}
                         </select>
-                        {selectedLoan && transaction.type === "Repayment" && (
+
+                        {selectedLoan && (
                             <p className="text-sm text-gray-600 mt-1">
                                 Remaining Balance: {remainingBalance}
                             </p>
@@ -120,7 +142,9 @@ const TransactionForm = () => {
                         >
                             <option value="">Select Type</option>
                             {typeOptions.map((t) => (
-                                <option key={t} value={t}>{t}</option>
+                                <option key={t} value={t}>
+                                    {t}
+                                </option>
                             ))}
                         </select>
                     </FormRow>
@@ -135,7 +159,11 @@ const TransactionForm = () => {
                             className="w-full border p-2 rounded"
                             required
                             min="0"
-                            max={transaction.type === "Repayment" ? remainingBalance : undefined} // optional
+                            max={
+                                transaction.type === "Repayment"
+                                    ? remainingBalance
+                                    : undefined
+                            }
                         />
                     </FormRow>
 
@@ -150,7 +178,7 @@ const TransactionForm = () => {
                         />
                     </FormRow>
 
-                    {/* Transaction Date */}
+                    {/* Date */}
                     <FormRow label="Transaction Date">
                         <input
                             type="date"
@@ -171,12 +199,36 @@ const TransactionForm = () => {
                             {id ? "Update" : "Create"}
                         </button>
                     </div>
-
                 </form>
             </div>
 
-            <div className="p-4">
+            {/* ===== Loan History + Balance Summary ===== */}
+            <div className="p-4 space-y-4">
                 <LoanHistory loanId={transaction.loan} />
+
+                {selectedLoan && (
+                    <div className="bg-gray-100 border rounded p-4 flex justify-between items-center">
+                        <div className="text-sm text-gray-600 space-y-1">
+                            <p>
+                                <span className="font-medium">Borrower:</span>{" "}
+                                {selectedLoan.borrower?.fullName}
+                            </p>
+                            <p>
+                                <span className="font-medium">Loan Amount:</span>{" "}
+                                {selectedLoan.amount}
+                            </p>
+                        </div>
+
+                        <div className="text-right">
+                            <p className="text-sm text-gray-500">
+                                Remaining Balance
+                            </p>
+                            <p className="text-xl font-bold text-gray-800">
+                                {remainingBalance}
+                            </p>
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );
