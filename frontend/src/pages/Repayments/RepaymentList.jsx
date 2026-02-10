@@ -55,12 +55,12 @@ const RepaymentList = () => {
     ];
 
     const actions = [
-        // {
-        //     type: "link",
-        //     label: "Edit",
-        //     to: (r) => `/repayments/edit/${r._id}`,
-        //     className: "text-blue-500",
-        // },
+        {
+            type: "link",
+            label: "Edit",
+            to: (r) => `/repayments/edit/${r._id}`,
+            className: "text-blue-500",
+        },
         {
             type: "button",
             label: "Delete",

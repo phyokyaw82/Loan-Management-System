@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1770563271670,
@@ -64,6 +64,10 @@
                 {
                     "date": 1770590656197,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n import { getRepayments, deleteRepayment } from \"../../api/repaymentApi\";\r\n import { getLoans } from \"../../api/loanApi\";\r\n import PageToolbar from \"../../components/PageToolbar\";\r\n import DataTable from \"../../components/DataTable\";\r\n-import { Link } from \"react-router-dom\";\r\n \r\n const RepaymentList = () => {\r\n     const [repayments, setRepayments] = useState([]);\r\n     const [loans, setLoans] = useState({});\r\n"
+                },
+                {
+                    "date": 1770697024949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,15 +54,15 @@\n         { key: \"description\", label: \"Description\", render: (r) => r.description || \"-\" },\r\n     ];\r\n \r\n     const actions = [\r\n-        // {\r\n-        //     type: \"link\",\r\n-        //     label: \"Edit\",\r\n-        //     to: (r) => `/repayments/edit/${r._id}`,\r\n-        //     className: \"text-blue-500\",\r\n-        // },\r\n         {\r\n+            type: \"link\",\r\n+            label: \"Edit\",\r\n+            to: (r) => `/repayments/edit/${r._id}`,\r\n+            className: \"text-blue-500\",\r\n+        },\r\n+        {\r\n             type: \"button\",\r\n             label: \"Delete\",\r\n             onClick: handleDelete,\r\n             className: \"text-red-500\",\r\n"
                 }
             ],
             "date": 1770563271670,
