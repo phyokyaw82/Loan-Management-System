@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1770562250670,
@@ -44,6 +44,10 @@
                 {
                     "date": 1770571442429,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,32 @@\n import axios from \"axios\";\r\n \r\n const API_URL = \"http://localhost:5000/api/contracts\";\r\n \r\n-export const getContracts = async () => (await axios.get(API_URL)).data;\r\n-export const getContractById = async (id) => (await axios.get(`${API_URL}/${id}`)).data;\r\n-export const createContract = async (formData) =>\r\n-    (await axios.post(API_URL, formData, { headers: { \"Content-Type\": \"multipart/form-data\" } })).data;\r\n-export const updateContract = async (id, formData) =>\r\n-    (await axios.put(`${API_URL}/${id}`, formData, { headers: { \"Content-Type\": \"multipart/form-data\" } })).data;\r\n-export const deleteContract = async (id) =>\r\n-    (await axios.delete(`${API_URL}/${id}`)).data;\r\n+export const getContracts = async () => {\r\n+    const res = await axios.get(API_URL);\r\n+    return res.data;\r\n+};\r\n+\r\n+export const getContractById = async (id) => {\r\n+    const res = await axios.get(`${API_URL}/${id}`);\r\n+    return res.data;\r\n+};\r\n+\r\n+export const createContract = async (formData) => {\r\n+    const res = await axios.post(API_URL, formData, {\r\n+        headers: { \"Content-Type\": \"multipart/form-data\" },\r\n+    });\r\n+    return res.data;\r\n+};\r\n+\r\n+export const updateContract = async (id, formData) => {\r\n+    const res = await axios.put(`${API_URL}/${id}`, formData, {\r\n+        headers: { \"Content-Type\": \"multipart/form-data\" },\r\n+    });\r\n+    return res.data;\r\n+};\r\n+\r\n+export const deleteContract = async (id) => {\r\n+    const res = await axios.delete(`${API_URL}/${id}`);\r\n+    return res.data;\r\n+};\r\n"
+                },
+                {
+                    "date": 1770701642162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,12 @@\n import axios from \"axios\";\r\n \r\n const API_URL = \"http://localhost:5000/api/contracts\";\r\n \r\n-export const getContracts = async () => {\r\n-    const res = await axios.get(API_URL);\r\n-    return res.data;\r\n-};\r\n+export const getContracts = () => axios.get(API_URL).then(res => res.data);\r\n+export const getContractById = (id) => axios.get(`${API_URL}/${id}`).then(res => res.data);\r\n \r\n-export const getContractById = async (id) => {\r\n-    const res = await axios.get(`${API_URL}/${id}`);\r\n-    return res.data;\r\n-};\r\n+const config = { headers: { \"Content-Type\": \"multipart/form-data\" } };\r\n \r\n-export const createContract = async (formData) => {\r\n-    const res = await axios.post(API_URL, formData, {\r\n-        headers: { \"Content-Type\": \"multipart/form-data\" },\r\n-    });\r\n-    return res.data;\r\n-};\r\n-\r\n-export const updateContract = async (id, formData) => {\r\n-    const res = await axios.put(`${API_URL}/${id}`, formData, {\r\n-        headers: { \"Content-Type\": \"multipart/form-data\" },\r\n-    });\r\n-    return res.data;\r\n-};\r\n-\r\n-export const deleteContract = async (id) => {\r\n-    const res = await axios.delete(`${API_URL}/${id}`);\r\n-    return res.data;\r\n-};\r\n+export const createContract = (formData) => axios.post(API_URL, formData, config).then(res => res.data);\r\n+export const updateContract = (id, formData) => axios.put(`${API_URL}/${id}`, formData, config).then(res => res.data);\r\n+export const deleteContract = (id) => axios.delete(`${API_URL}/${id}`).then(res => res.data);\r\n"
                 }
             ],
             "date": 1770562250670,

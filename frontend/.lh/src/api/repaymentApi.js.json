@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1770562250202,
@@ -24,6 +24,14 @@
                 {
                     "date": 1770568367911,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     return res.data;\r\n };\r\n \r\n export const getRepaymentsByLoan = async (loanId) => {\r\n-    const res = await fetch(`/repayments/loan/${loanId}`);\r\n+    const res = await fetch(`${API_URL}/loan/${loanId}`);\r\n     return res.json();\r\n };\r\n \r\n export const getRepaymentById = async (id) => {\r\n"
+                },
+                {
+                    "date": 1770701533265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n };\r\n \r\n export const getRepaymentsByLoan = async (loanId) => {\r\n     const res = await fetch(`${API_URL}/loan/${loanId}`);\r\n-    return res.json();\r\n+    return res.data;\r\n };\r\n \r\n export const getRepaymentById = async (id) => {\r\n     const res = await axios.get(`${API_URL}/${id}`);\r\n"
+                },
+                {
+                    "date": 1770701642073,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,33 +1,12 @@\n import axios from \"axios\";\r\n \r\n-const API_URL = \"http://localhost:5000/api/repayments\"; // your backend endpoint\r\n+const API_URL = \"http://localhost:5000/api/repayments\";\r\n \r\n-export const getRepayments = async () => {\r\n-    const res = await axios.get(API_URL);\r\n-    return res.data;\r\n-};\r\n+const handleResponse = (promise) => promise.then(res => res.data);\r\n \r\n-export const getRepaymentsByLoan = async (loanId) => {\r\n-    const res = await fetch(`${API_URL}/loan/${loanId}`);\r\n-    return res.data;\r\n-};\r\n-\r\n-export const getRepaymentById = async (id) => {\r\n-    const res = await axios.get(`${API_URL}/${id}`);\r\n-    return res.data;\r\n-};\r\n-\r\n-export const createRepayment = async (data) => {\r\n-    const res = await axios.post(API_URL, data);\r\n-    return res.data;\r\n-};\r\n-\r\n-export const updateRepayment = async (id, data) => {\r\n-    const res = await axios.put(`${API_URL}/${id}`, data);\r\n-    return res.data;\r\n-};\r\n-\r\n-export const deleteRepayment = async (id) => {\r\n-    const res = await axios.delete(`${API_URL}/${id}`);\r\n-    return res.data;\r\n-};\r\n+export const getRepayments = () => handleResponse(axios.get(API_URL));\r\n+export const getRepaymentsByLoan = (loanId) => handleResponse(axios.get(`${API_URL}/loan/${loanId}`));\r\n+export const getRepaymentById = (id) => handleResponse(axios.get(`${API_URL}/${id}`));\r\n+export const createRepayment = (data) => handleResponse(axios.post(API_URL, data));\r\n+export const updateRepayment = (id, data) => handleResponse(axios.put(`${API_URL}/${id}`, data));\r\n+export const deleteRepayment = (id) => handleResponse(axios.delete(`${API_URL}/${id}`));\r\n"
                 }
             ],
             "date": 1770562250202,

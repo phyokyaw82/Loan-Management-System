@@ -1,33 +1,12 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/repayments"; // your backend endpoint
+const API_URL = "http://localhost:5000/api/repayments";
 
-export const getRepayments = async () => {
-    const res = await axios.get(API_URL);
-    return res.data;
-};
+const handleResponse = (promise) => promise.then(res => res.data);
 
-export const getRepaymentsByLoan = async (loanId) => {
-    const res = await fetch(`${API_URL}/loan/${loanId}`);
-    return res.json();
-};
-
-export const getRepaymentById = async (id) => {
-    const res = await axios.get(`${API_URL}/${id}`);
-    return res.data;
-};
-
-export const createRepayment = async (data) => {
-    const res = await axios.post(API_URL, data);
-    return res.data;
-};
-
-export const updateRepayment = async (id, data) => {
-    const res = await axios.put(`${API_URL}/${id}`, data);
-    return res.data;
-};
-
-export const deleteRepayment = async (id) => {
-    const res = await axios.delete(`${API_URL}/${id}`);
-    return res.data;
-};
+export const getRepayments = () => handleResponse(axios.get(API_URL));
+export const getRepaymentsByLoan = (loanId) => handleResponse(axios.get(`${API_URL}/loan/${loanId}`));
+export const getRepaymentById = (id) => handleResponse(axios.get(`${API_URL}/${id}`));
+export const createRepayment = (data) => handleResponse(axios.post(API_URL, data));
+export const updateRepayment = (id, data) => handleResponse(axios.put(`${API_URL}/${id}`, data));
+export const deleteRepayment = (id) => handleResponse(axios.delete(`${API_URL}/${id}`));
